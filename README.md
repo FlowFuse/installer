@@ -32,11 +32,16 @@ Most configuration is done through the web interface, but one thing you may wish
 `BASE_URL` entry in the `.env.development` file in which will be in the root of the directory you created 
 earlier. If you intend to access both the FlowForge interface and the Node-RED instances remotely 
 (not via localhost) then you should change this to match the IP address of the machine running the FlowForge
-instance.
+instance. e.g.
 
-This change will only take effect after a restart of the FlowForge platform and will only apply to new Projects
-created.
+```
+#BASE_URL=http://localhost:3000
+BASE_URL=192.168.1.100:3000
+```
+
+This change will only take effect after a restart of the FlowForge platform and will apply to Projects
+created after the change.
 
 ## Issues
 
-If you come across any issues please raise them here 
+If you come across any issues please raise them here: [https://github.com/flowforge/flowforge/issues](https://github.com/flowforge/flowforge/issues)

@@ -10,6 +10,16 @@ NodeJS installer.
 
 You can download the NodeJS installer here: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
+The installer has been tested on
+
+ - Raspbian Buster/Bullseye
+ - Fedora 35
+ - Ubuntu 20.04
+ - OSx
+ - Windows 10
+
+ It should also run on CentOS/RHEL
+
 ### Install
 
  - Download the Installer zip file
@@ -25,6 +35,11 @@ You can download the NodeJS installer here: [https://nodejs.org/en/download/](ht
  - You will be asked to create a Administrator user the first time you connect
  - Once logged in as the new user you will be prompted to create your first team.
  - From there you can create Projects (instances of Node-RED) which will be managed as part of the team.
+
+ After the first start the following will be created in the working directory
+
+  - `forge.db` this is the database that holds all the project settings
+  - `localfs_root` this directory holds the userDir for each Project instance.
 
 ## Configure
 

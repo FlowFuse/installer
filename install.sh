@@ -16,7 +16,7 @@ case "$OSTYPE" in
     MYOS=darwin
   ;;
   linux*)
-    MYOS=$(cat /etc/*-release | grep "^ID=" | cut -d = -f 2)
+    MYOS=$(cat /etc/os-release | grep "^ID=" | cut -d = -f 2)
   ;;
   *) 
     # unknown OS

@@ -16,7 +16,7 @@ case "$OSTYPE" in
     MYOS=darwin
   ;;
   linux*)
-    MYOS=$(cat /etc/os-release | grep "^ID=" | cut -d = -f 2)
+    MYOS=$(cat /etc/os-release | grep "^ID=" | cut -d = -f 2 | | tr -d '"')
   ;;
   *) 
     # unknown OS
@@ -50,7 +50,7 @@ else
       sudo dnf module reset -y nodejs
       sudo dnf module install -y "nodejs:$MIN_NODEJS/default"
       sudo dnf group install -y "C Development Tools and Libraries"
-    elif [[ "$MYOS" == "rhel" ]] || [[ "$MYOS" == "centos"  ]]; then
+    elif [[ "$MYOS" == "rhel" ]] || [[ "$MYOS" == "centos" || "$MYOS" == "amzn" ]]; then
       curl -fsSL "https://rpm.nodesource.com/setup_$MIN_NODEJS.x" | sudo -E bash -
       sudo yum install -y nodejs
       sudo yum group install -y "Development Tools"
@@ -65,10 +65,13 @@ else
       echo "**************************************************************"
       echo "* Unkown OS $MYOS                                            *"
       echo "* Currently supporting:                                      *"
+      echo "* - RasberryPi OS/Raspbain                                   *"
       echo "* - Debian                                                   *"
+      echo "* - Ubuntu                                                   *"
       echo "* - Fedora                                                   *"
       echo "* - CentOS                                                   *"
       echo "* - RHEL                                                     *"
+      echo "* - Amazon Linux 2                                           *"
       echo "* - OSx                                                      *"
       echo "**************************************************************"
       exit 1 

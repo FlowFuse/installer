@@ -18,7 +18,12 @@ The installer has been tested on
  - OSx
  - Windows 10
 
- It should also run on CentOS/RHEL
+ It should also run on CentOS/RHEL/Amazon Linux 2
+
+ The system also makes use of the SQLite3 database engine to store state. In most cases npm should download
+ pre-built binary components the will make use of any pre-installed SQLite3 libraries available on your 
+ system, but in somecases it may need to build these from the bundled source which will require the build 
+ tools mentioned earlier.
 
 ### Install
 

@@ -54,4 +54,4 @@ echo **************************************************************
 echo * Installing FlowForge                                       *
 echo **************************************************************
 
-npm install --production --@flowforge:registry=https://npm.hardill.me.uk --no-fund --no-audit
+npm install --production --@flowforge:registry=https://npm.hardill.me.uk --no-fund --no-audit --silent

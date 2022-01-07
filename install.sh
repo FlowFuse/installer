@@ -9,6 +9,21 @@ echo "* password in able to run some commands as root.             *"
 echo "*                                                            *"
 echo "**************************************************************"
 
+realpath() {
+  OURPWD=$PWD
+  cd "$(dirname "$1")"
+  LINK=$(readlink "$(basename "$1")")
+  while [ "$LINK" ]; do
+    cd "$(dirname "$LINK")"
+    LINK=$(readlink "$(basename "$1")")
+  done
+  REALPATH="$PWD/$(basename "$1")"
+  cd "$OURPWD"
+  echo "$REALPATH"
+}
+
+DIR="$(dirname "$(realpath "$0")")"
+
 MIN_NODEJS=16
 
 case "$OSTYPE" in
@@ -28,20 +43,23 @@ if [ -x "$(command -v node)" ]; then
   VERSION=`node --version | cut -d "." -f1 | cut -d "v" -f2`
   if [[ $VERSION -ge $MIN_NODEJS ]]; then
     echo "**************************************************************"
-    echo "* NodeJS Version $MIN_NODEJS or newer found                          *"
+    echo "* NodeJS Version $MIN_NODEJS or newer found                           *"
     echo "**************************************************************"
   else
     echo "**************************************************************"
-    echo "* You need NodeJS $MIN_NODEJS or newer, please upgrade               *"
+    echo "* You need NodeJS $MIN_NODEJS or newer, please upgrade                *"
     echo "**************************************************************"
     exit 1
   fi
 else
   echo "**************************************************************"
   echo "* No NodeJS found                                            *"
-  echo "* Do you want to install NodeJS $MIN_NODEJS?                           *"
+  echo "* Do you want to install NodeJS $MIN_NODEJS?                            *"
   echo "**************************************************************"
-  read -p "y/N" yn
+  read -p "y/N: " yn
+  if [ -x "${yn}"]; then
+    yn=n
+  fi
   if [[ "$yn" == "y" ]] || [[ "$yn" == "Y" ]]; then 
     if [[ "$MYOS" == "debian" ]] || [[ "$MYOS" == "ubuntu" ]] || [[ "$MYOS" == "raspbian" ]]; then
       curl -sSL "https://deb.nodesource.com/setup_$MIN_NODEJS.x" | sudo -E bash -
@@ -104,4 +122,69 @@ echo "**************************************************************"
 echo "* Installing FlowForge                                       *"
 echo "**************************************************************"
 
-npm install --production --@flowforge:registry=https://npm.hardill.me.uk --no-fund --no-audit
+npm install --production --@flowforge:registry=https://npm.hardill.me.uk --no-fund --no-audit --silent
+
+if [[ "$OSTYPE" == linux* ]]; then
+  if [ -x "$(command -v systemctl)" ]; then
+
+    echo "**************************************************************"
+    echo "* Do you want to run FlowForge as a service?                 *"
+    echo "**************************************************************"
+    read -p "Y/n: " yn
+    if [ -z "${yn}" ]; then
+      yn=Y
+    fi
+    if [[ "$yn" == "y" ]] || [[ "$yn" == "Y" ]]; then 
+
+      echo "**************************************************************"
+      echo "* Do you want to run FlowForge as the current user ($USER)   *"
+      echo "* or create a flowforge user?                                *"
+      echo "**************************************************************"
+
+      read -p "Current/FlowForge (C/f): " cf
+      if [[ "$cf" == "c" ]] || [[ "$cf" == "C" ]]; then
+
+        FF_USER=`id -u -n`
+        FF_GROUP=`id -g -n`
+
+      elif [[ "$cf" == "f" ]] || [[ "$cf" == "F" ]]; then
+        echo "Using sudo to create a new user, please enter password if asked"
+        if sudo adduser --system flowforge --home $DIR --group --no-create-home --disabled-login --disabled-password --quiet; then
+          FF_USER=flowforge
+          FF_GROUP=flowforge
+          sudo chown -R $FF_USER .
+        else
+          echo "**************************************************************"
+          echo "* Failed to create flowforge user                            *"
+          echo "**************************************************************"
+          exit 1
+        fi
+      else
+        # unknown value
+        echo "**************************************************************"
+        echo "* Not C or F                                                 *"
+        echo "**************************************************************"
+        exit 1
+      fi 
+      
+      sed 's!/opt/flowforge!'$DIR'!;s!User=pi!User='$FF_USER'!;s!Group=pi!Group='$FF_GROUP'!' systemd/flowforge.service-skel > systemd/flowforge.service
+
+      
+      if [[ "$MYOS" == "debian" ]] || [[ "$MYOS" == "ubuntu" ]] || [[ "$MYOS" == "raspbian" ]]; then
+        #Debian/Ubuntu /lib/systemd/system/
+        sudo cp systemd/flowforge.service /lib/systemd/system/
+      elif [[ "$MYOS" == "rhel" ]] || [[ "$MYOS" == "centos" || "$MYOS" == "amzn" || "$MYOS" == "fedora" ]]; then
+        #RHEL/Fedora /etc/systemd/system/
+        sudo cp systemd/flowforge.service /etc/systemd/system/
+      fi
+
+      sudo systemctl daemon-reload
+
+      echo "**************************************************************"
+      echo "* Service installed but not started, to start run the        *"
+      echo "* following: service flowforge start                         *"
+      echo "**************************************************************"
+
+    fi
+  fi
+fi

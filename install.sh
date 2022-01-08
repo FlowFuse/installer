@@ -1,12 +1,12 @@
 #!/bin/bash
 
 echo "**************************************************************"
-echo "* FlowForge Installer                                        *"
-echo "*                                                            *"
-echo "* Warning:                                                   *"
-echo "* If this script needs to install NodeJS it may ask for your *"
-echo "* password in able to run some commands as root.             *"
-echo "*                                                            *"
+echo " FlowForge Installer                                        "
+echo "                                                            "
+echo " Warning:                                                   "
+echo " If this script needs to install NodeJS it may ask for your "
+echo " password in able to run some commands as root.             "
+echo "                                                            "
 echo "**************************************************************"
 
 realpath() {
@@ -54,18 +54,18 @@ if [ -x "$(command -v node)" ]; then
   VERSION=`node --version | cut -d "." -f1 | cut -d "v" -f2`
   if [[ $VERSION -ge $MIN_NODEJS ]]; then
     echo "**************************************************************"
-    echo "* NodeJS Version $MIN_NODEJS or newer found                           *"
+    echo " NodeJS Version $MIN_NODEJS or newer found "
     echo "**************************************************************"
   else
     echo "**************************************************************"
-    echo "* You need NodeJS $MIN_NODEJS or newer, please upgrade                *"
+    echo " You need NodeJS $MIN_NODEJS or newer, please upgrade "
     echo "**************************************************************"
     exit 1
   fi
 else
   echo "**************************************************************"
-  echo "* No NodeJS found                                            *"
-  echo "* Do you want to install NodeJS $MIN_NODEJS?                            *"
+  echo " No NodeJS found"
+  echo " Do you want to install NodeJS $MIN_NODEJS?"
   echo "**************************************************************"
   read -p "y/N: " yn
   if [ -x "${yn}"]; then
@@ -85,30 +85,30 @@ else
       sudo yum group install -y "Development Tools"
     elif [[ "$MYOS" == "darwin" ]]; then
       echo "**************************************************************"
-      echo "* On OSx you will need to manually install NodeJS            *"
-      echo "* Please install the latest LTS release from:                *"
-      echo "* https://nodejs.org/en/download/                            *"
+      echo " On OSx you will need to manually install NodeJS            "
+      echo " Please install the latest LTS release from:                "
+      echo " https://nodejs.org/en/download/                            "
       echo "**************************************************************"
       exit 1
     else
       echo "**************************************************************"
-      echo "* Unkown OS $MYOS                                            *"
-      echo "* Currently supporting:                                      *"
-      echo "* - RasberryPi OS/Raspbain                                   *"
-      echo "* - Debian                                                   *"
-      echo "* - Ubuntu                                                   *"
-      echo "* - Fedora                                                   *"
-      echo "* - CentOS                                                   *"
-      echo "* - RHEL                                                     *"
-      echo "* - Amazon Linux 2                                           *"
-      echo "* - OSx                                                      *"
+      echo " Unkown OS $MYOS                                            "
+      echo " Currently supporting:                                      "
+      echo " - RasberryPi OS/Raspbain                                   "
+      echo " - Debian                                                   "
+      echo " - Ubuntu                                                   "
+      echo " - Fedora                                                   "
+      echo " - CentOS                                                   "
+      echo " - RHEL                                                     "
+      echo " - Amazon Linux 2                                           "
+      echo " - OSx                                                      "
       echo "**************************************************************"
       exit 1 
     fi
   else
     echo "**************************************************************"
-    echo "* You will need to manually install NodeJS first             *"
-    echo "* exiting                                                    *"
+    echo " You will need to manually install NodeJS first             "
+    echo " exiting                                                    "
     echo "**************************************************************"
     exit 1
   fi
@@ -116,12 +116,12 @@ fi
 
 if [ -x "$(command -v npm)" ]; then
   echo "**************************************************************"
-  echo "* npm found                                                  *"
+  echo " npm found                                                  "
   echo "**************************************************************"
   npm --version
 else
   echo "**************************************************************"
-  echo "* No npm found exiting                                       *"
+  echo " No npm found exiting                                       "
   echo "**************************************************************"
   exit 1
 fi
@@ -130,7 +130,7 @@ fi
 rm -rf node_modules package-lock.json
 
 echo "**************************************************************"
-echo "* Installing FlowForge                                       *"
+echo " Installing FlowForge                                       "
 echo "**************************************************************"
 
 npm install --production --@flowforge:registry=https://npm.hardill.me.uk --no-fund --no-audit --silent
@@ -139,7 +139,7 @@ if [[ "$OSTYPE" == linux* ]]; then
   if [ -x "$(command -v systemctl)" ]; then
 
     echo "**************************************************************"
-    echo "* Do you want to run FlowForge as a service?                 *"
+    echo " Do you want to run FlowForge as a service?"
     echo "**************************************************************"
     read -p "Y/n: " yn
     if [ -z "${yn}" ]; then
@@ -148,8 +148,8 @@ if [[ "$OSTYPE" == linux* ]]; then
     if [[ "$yn" == "y" ]] || [[ "$yn" == "Y" ]]; then 
 
       echo "**************************************************************"
-      echo "* Do you want to run FlowForge as the current user ($USER)   *"
-      echo "* or create a flowforge user?                                *"
+      echo " Do you want to run FlowForge as the current user ($USER)   "
+      echo " or create a flowforge user?                                "
       echo "**************************************************************"
 
       read -p "Current/FlowForge (C/f): " cf
@@ -164,17 +164,16 @@ if [[ "$OSTYPE" == linux* ]]; then
         if createUser; then
           FF_USER=flowforge
           FF_GROUP=flowforge
-          sudo chown -R $FF_USER .
         else
           echo "**************************************************************"
-          echo "* Failed to create flowforge user                            *"
+          echo " Failed to create flowforge user                             "
           echo "**************************************************************"
           exit 1
         fi
       else
         # unknown value
         echo "**************************************************************"
-        echo "* Not C or F                                                 *"
+        echo " Not C or F                                                  "
         echo "**************************************************************"
         exit 1
       fi 
@@ -190,11 +189,23 @@ if [[ "$OSTYPE" == linux* ]]; then
         sudo cp systemd/flowforge.service /etc/systemd/system/
       fi
 
+      sudo -u $FF_USER test -x $DIR/flowforge.sh
+      if [ $? -eq 1 ]; then
+        sudo -u $FF_USER namei -l $DIR
+        echo "**************************************************************"
+        echo " User $FF_USER does not have access to $DIR, "
+        echo " please check the permissions on all the full path before "
+        echo " trying to start the service"
+        echo "**************************************************************"
+      fi
+
+      sudo chown -R $FF_USER .
+
       sudo systemctl daemon-reload
 
       echo "**************************************************************"
-      echo "* Service installed but not started, to start run the        *"
-      echo "* following: service flowforge start                         *"
+      echo " Service installed but not started, to start run the        "
+      echo " following: service flowforge start                         "
       echo "**************************************************************"
 
     fi

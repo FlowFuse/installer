@@ -205,7 +205,7 @@ if [[ "$OSTYPE" == linux* ]]; then
 
       echo "**************************************************************"
       echo " Service installed but not started, to start run the        "
-      echo " following: service flowforge start                         "
+      echo " following: sudo service flowforge start                    "
       echo "**************************************************************"
 
     fi

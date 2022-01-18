@@ -1,4 +1,4 @@
-# FlowForge Alpha Installer
+# FlowForge Installer
 
 ## Installing
 

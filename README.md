@@ -47,7 +47,8 @@ db:
   storage: forge.db
 driver:
   type: localfs
-  startPort: 7880
+  options:
+    startPort: 7880
 email:
   enabled: true
   smtp:
@@ -66,7 +67,8 @@ email:
   - `storage` Name of local database file. default `forge.db`
 - `driver`
   - `type` Which FlowForge Project driver to use. default `localfs`
-  - `startPort` Which port the first Project will listen on. default `7880`
+  - `options` driver options
+    - `startPort` Which port the first Project will listen on. default `7880`
 - `email`
   - `host` The hostname for a SMTP server to be used to send email. default not set (email disabled)
   - `port` The port for the SMTP server to be used to send email. default not set

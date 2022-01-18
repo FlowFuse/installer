@@ -7,6 +7,8 @@ set F_PATH=%~dp0
 
 %F_DRIVE%
 cd %F_PATH%
+cd ..
+set FLOWFORGE_HOME=%CWD%
 
-.\node_modules\.bin\flowforge.cmd
+.\app\node_modules\.bin\flowforge.cmd
 

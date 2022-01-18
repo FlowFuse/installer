@@ -136,10 +136,11 @@ echo "**************************************************************"
 
 npm install --production --no-fund --no-audit --silent --@flowforge:registry=https://npm.hardill.me.uk
 
+cd ..
 if [ ! -f etc/flowforge.yml ]; then
   cp app/node_modules/@flowforge/flowforge/etc/flowforge.yml etc/flowforge.yml
 fi
-cd ..
+
 
 if [[ "$OSTYPE" == linux* ]]; then
   if [ -x "$(command -v systemctl)" ]; then

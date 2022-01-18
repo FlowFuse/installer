@@ -48,7 +48,7 @@ db:
 driver:
   type: localfs
   options:
-    startPort: 7880
+    start_port: 7880
 email:
   enabled: true
   smtp:
@@ -68,7 +68,7 @@ email:
 - `driver`
   - `type` Which FlowForge Project driver to use. default `localfs`
   - `options` driver options
-    - `startPort` Which port the first Project will listen on. default `7880`
+    - `start_port` Which port the first Project will listen on. default `7880`
 - `email`
   - `host` The hostname for a SMTP server to be used to send email. default not set (email disabled)
   - `port` The port for the SMTP server to be used to send email. default not set

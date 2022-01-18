@@ -1,0 +1,9 @@
+[Unit]
+Description=FlowForge Socket
+PartOf=flowforge.service
+
+[Socket]
+ListenStream=3000
+
+[Install]
+WantedBy=sockets.target

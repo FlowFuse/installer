@@ -13,6 +13,8 @@ realpath() {
   echo "$REALPATH"
 }
 
-DIR="$(dirname "$(realpath "$0")")"
-cd $DIR
-./node_modules/.bin/flowforge
+BIN_DIR="$(dirname "$(realpath "$0")")"
+FLOWFORGE_HOME="$(dirname "$BIN_DIR")"
+cd $FLOWFORGE_HOME
+export FLOWFORGE_HOME
+./app/node_modules/.bin/flowforge

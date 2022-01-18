@@ -127,13 +127,20 @@ else
 fi
 
 #clean up for upgrades
+cd app
 rm -rf node_modules package-lock.json
 
 echo "**************************************************************"
 echo " Installing FlowForge                                       "
 echo "**************************************************************"
 
-npm install --production --@flowforge:registry=https://npm.hardill.me.uk --no-fund --no-audit --silent
+npm install --production --no-fund --no-audit --silent --@flowforge:registry=https://npm.hardill.me.uk
+
+cd ..
+if [ ! -f etc/flowforge.yml ]; then
+  cp app/node_modules/@flowforge/flowforge/etc/flowforge.yml etc/flowforge.yml
+fi
+
 
 if [[ "$OSTYPE" == linux* ]]; then
   if [ -x "$(command -v systemctl)" ]; then
@@ -150,9 +157,12 @@ if [[ "$OSTYPE" == linux* ]]; then
       echo "**************************************************************"
       echo " Do you want to run FlowForge as the current user ($USER)   "
       echo " or create a flowforge user?                                "
+      if [ $EUID -eq 0  ]; then
+        echo " running as root is a really bad idea, please create a new user"
+      fi
       echo "**************************************************************"
 
-      read -p "Current/FlowForge (C/f): " cf
+      read -p "Current/FlowForge (c/F): " cf
       if [[ "$cf" == "c" ]] || [[ "$cf" == "C" ]]; then
 
         FF_USER=`id -u -n`
@@ -178,15 +188,15 @@ if [[ "$OSTYPE" == linux* ]]; then
         exit 1
       fi 
       
-      sed 's!/opt/flowforge!'$DIR'!;s!User=pi!User='$FF_USER'!;s!Group=pi!Group='$FF_GROUP'!' systemd/flowforge.service-skel > systemd/flowforge.service
+      sed 's!/opt/flowforge!'$DIR'!;s!User=pi!User='$FF_USER'!;s!Group=pi!Group='$FF_GROUP'!' etc/systemd/flowforge.service-skel > etc/systemd/flowforge.service
 
       
       if [[ "$MYOS" == "debian" ]] || [[ "$MYOS" == "ubuntu" ]] || [[ "$MYOS" == "raspbian" ]]; then
         #Debian/Ubuntu /lib/systemd/system/
-        sudo cp systemd/flowforge.service /lib/systemd/system/
+        sudo cp etc/systemd/flowforge.service /lib/systemd/system/
       elif [[ "$MYOS" == "rhel" ]] || [[ "$MYOS" == "centos" || "$MYOS" == "amzn" || "$MYOS" == "fedora" ]]; then
         #RHEL/Fedora /etc/systemd/system/
-        sudo cp systemd/flowforge.service /etc/systemd/system/
+        sudo cp etc/systemd/flowforge.service /etc/systemd/system/
       fi
 
       sudo -u $FF_USER test -x $DIR/flowforge.sh

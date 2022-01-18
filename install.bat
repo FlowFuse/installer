@@ -47,6 +47,7 @@ IF %ERRORLEVEL% NEQ 0 (
 )
 
 REM clean up for upgrades
+cd app
 rd /q /s node_modules
 del /q package-lock.json
 
@@ -54,4 +55,7 @@ echo **************************************************************
 echo * Installing FlowForge                                       *
 echo **************************************************************
 
-npm install --production --@flowforge:registry=https://npm.hardill.me.uk --no-fund --no-audit --silent
+npm install --production --no-fund --no-audit --silent --@flowforge:registry=https://npm.hardill.me.uk
+
+cd ..
+copy app\node_modules\@flowforge\flowforge\etc\flowforge.yml etc

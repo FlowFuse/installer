@@ -18,7 +18,7 @@ The install scripts have been tested on
  - MacOS Big Sur
  - Windows 10
 
- ~ Not supporting Arm6 based machines (e.g. Original Raspberry Pi Zero and Zero W) as NodeJS installer no longer supports this platform. 
+ ~ Not supporting Arm6 based machines (e.g. Original Raspberry Pi Zero and Zero W) as NodeJS installer no longer supports platforms based on this architecture. 
 
 FlowForge also makes use of the SQLite3 database engine to store state. In most cases npm should download pre-built binary components the will make use of any pre-installed SQLite3 libraries available on your system, but in somecases it may need to build these from the bundled source which will require the build tools mentioned earlier.
 
@@ -33,26 +33,51 @@ FlowForge also makes use of the SQLite3 database engine to store state. In most 
    - Decide if you want to run the sevice as the current user or as a new `flowforge` user
    - Once complete you can start the service with `sudo service flowforge start`
  - If you answer no to the service or are running on MacOS or Windows then:
-   - Once the install completes you can start the FlowForge platform with `./flowforge.sh` or `flowforge.bat`
+   - Once the install completes you can start the FlowForge platform with `./bin/flowforge.sh` or `bin\flowforge.bat`
 
 ### Configuration
 
-Most configuration is done via the web interface. The following values can be changed in the `.env.development` file in the FlowForge home directory.
+Most configuration is done via the web interface. The following values can be changed in the `etc/flowforge.yml` file in the FlowForge home directory.
 
-- `PORT` Which port to the FlowForge platform should listen on. default `3000`
-- `BASE_URL` The URL to access the FlowForge platform. default `http://localhost:3000`
-- `LOCALFS_ROOT` Where to store the userDir directories for the Node-RED instances. default `localfs_root` in the FlowForge home directory
-- `LOCALFS_START_PORT` The port number to start from for Node-RED instances. default `7880`
-- `LOCALFS_NODE_PATH` The path to the node binary to use for starting Node-RED instances. Sometimes needed when using nvm. default not set
-- `SMTP_TRANSPORT_HOST` The hostname for a SMTP server to be used to send email. default not set (email disabled)
-- `SMTP_TRANSPORT_PORT` The port for the SMTP server to be used to send email. default not set
-- `SMTP_TRANSPORT_TLS` To use TLS when connecting to SMTP server. default `false`
-- `SMTP_TRANSPORT_AUTH_USER` A username to authenticate with the SMTP server
-- `SMTP_TRANSPORT_AUTH_PASS` A passsword to authenticate with the SMTP server
+```
+port: 3000
+base_url: http://localhost:3000
+db:
+  type: sqlite
+  storage: forge.db
+driver:
+  type: localfs
+  startPort: 7880
+email:
+  enabled: true
+  smtp:
+    host: localhost
+    port: 587
+    secure: false
+    auth:
+      user: admin
+      pass: password
+```
 
-Apart from setting the SMTP details the most likely change to make will be the `BASE_URL` value. Chaning this to the match the IP address of the machine running FlowForge will allow you to access both the FlowForge UI and the Node-RED instances from other machines on your network. e.g. if running on `192.168.1.10` then `BASE_URL=http://192.168.1.10:3000` would be the correct setting.
+- `port` Which port to the FlowForge platform should listen on. default `3000`
+- `base_url` The URL to access the FlowForge platform. default `http://localhost:3000`
+- `db`
+  - `type` Which storage engine to use. default `sqlite`
+  - `storage` Name of local database file. default `forge.db`
+- `driver`
+  - `type` Which FlowForge Project driver to use. default `localfs`
+  - `startPort` Which port the first Project will listen on. default `7880`
+- `email`
+  - `host` The hostname for a SMTP server to be used to send email. default not set (email disabled)
+  - `port` The port for the SMTP server to be used to send email. default not set
+  - `secure` To use TLS when connecting to SMTP server. default `false` (Where supported `START_TLS` will still be used)
+  - `auth`
+    - `user` A username to authenticate with the SMTP server
+    - `pass` A passsword to authenticate with the SMTP server
 
-Changes to `.env.development` only take effect when the platform is restarted.
+Apart from setting the SMTP details the most likely change to make will be the `base_url` value. Chaning this to the match the IP address of the machine running FlowForge will allow you to access both the FlowForge UI and the Node-RED instances from other machines on your network. e.g. if running on `192.168.1.10` then `base_url=http://192.168.1.10:3000` would be the correct setting.
+
+Changes to `etc/flowforge.yml` only take effect when the platform is restarted.
 
 ### First run
 
@@ -61,10 +86,10 @@ Changes to `.env.development` only take effect when the platform is restarted.
  - Once logged in as the new user you will be prompted to create your first team.
  - From there you can create Projects (instances of Node-RED) which will be managed as part of the team.
 
- After the first start the following will be created in the working directory
+ After the first start the following will be created in the `var` directory
 
   - `forge.db` this is the database that holds all the project settings
-  - `localfs_root` this directory holds the userDir for each Project instance.
+  - `projects` this directory holds the userDir for each Project instance.
 
 
 ## Issues

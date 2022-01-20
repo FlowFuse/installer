@@ -201,7 +201,7 @@ if [[ "$OSTYPE" == linux* ]]; then
 
       sudo chown -R $FF_USER .
 
-      sudo -u $FF_USER test -x $DIR/flowforge.sh
+      sudo -u $FF_USER test -x $DIR/bin/flowforge.sh
       if [ $? -eq 1 ]; then
         sudo -u $FF_USER namei -l $DIR
         echo "**************************************************************"

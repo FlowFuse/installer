@@ -55,7 +55,13 @@ echo **************************************************************
 echo * Installing FlowForge                                       *
 echo **************************************************************
 
-npm install --production --no-fund --no-audit --silent 
+call npm install --production --no-fund --no-audit --silent 
 
 cd ..
 copy app\node_modules\@flowforge\flowforge\etc\flowforge.yml etc
+
+echo **************************************************************
+echo * Installed FlowForge                                        *
+echo * Start with bin\flowforge.bat
+echo **************************************************************
+

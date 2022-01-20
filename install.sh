@@ -199,6 +199,8 @@ if [[ "$OSTYPE" == linux* ]]; then
         sudo cp etc/systemd/flowforge.service /etc/systemd/system/
       fi
 
+      sudo chown -R $FF_USER .
+
       sudo -u $FF_USER test -x $DIR/flowforge.sh
       if [ $? -eq 1 ]; then
         sudo -u $FF_USER namei -l $DIR
@@ -208,8 +210,6 @@ if [[ "$OSTYPE" == linux* ]]; then
         echo " trying to start the service"
         echo "**************************************************************"
       fi
-
-      sudo chown -R $FF_USER .
 
       sudo systemctl daemon-reload
 

@@ -134,7 +134,7 @@ echo "**************************************************************"
 echo " Installing FlowForge                                       "
 echo "**************************************************************"
 
-npm install --production --no-fund --no-audit --silent --@flowforge:registry=https://npm.hardill.me.uk
+npm install --production --no-fund --no-audit --silent 
 
 cd ..
 if [ ! -f etc/flowforge.yml ]; then

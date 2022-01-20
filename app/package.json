@@ -1,6 +1,6 @@
 {
   "name": "flowforge-localfs",
-  "version": "0.0.1-alpha1",
+  "version": "0.1.0",
   "description": "FlowForge",
   "bugs": {
     "url": "https://github.com/flowforge/flowforge/issues"
@@ -10,6 +10,6 @@
   },
   "license": "SEE LICENSE IN ./LICENSE",
   "dependencies": {
-    "@flowforge/flowforge": "^0.0.1"
+    "@flowforge/flowforge": "^0.1.0"
   }
 }

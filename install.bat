@@ -55,7 +55,7 @@ echo **************************************************************
 echo * Installing FlowForge                                       *
 echo **************************************************************
 
-npm install --production --no-fund --no-audit --silent --@flowforge:registry=https://npm.hardill.me.uk
+npm install --production --no-fund --no-audit --silent 
 
 cd ..
 copy app\node_modules\@flowforge\flowforge\etc\flowforge.yml etc

@@ -1,16 +1,18 @@
 # FlowForge Installer
 
-## Installing
+This repository provides the installer for local installations of the FlowForge
+platform.
 
-### Pre Requisites
+Please refer to the main documentation for a complete guide to installing and
+setting up the platform: https://github.com/flowforge/flowforge/tree/main/docs
 
-The FlowForge platform requires NodeJS 16 or newer. On Windows or MacOS you will need to manually install this before proceeding. Please remember to install the native build tools if asked by the NodeJS installer.
+### Prerequistes
 
-You can download the NodeJS installer here: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+#### Operating System
 
-The install scripts have been tested on
+The install script has been tested against the following operating systems:
 
- - Raspbian/Raspberry Pi OS versions Buster/Bullseye ~
+ - Raspbian/Raspberry Pi OS versions Buster/Bullseye [^1]
  - Debian Buster/Bullseye
  - Fedora 35
  - Ubuntu 20.04
@@ -18,82 +20,110 @@ The install scripts have been tested on
  - MacOS Big Sur
  - Windows 10
 
- ~ Not supporting Arm6 based machines (e.g. Original Raspberry Pi Zero and Zero W) as NodeJS installer no longer supports platforms based on this architecture. 
+[^1]: Arm6 devices, such as the original Raspberry Pi Zero and Zero W are not supported.
 
-FlowForge also makes use of the SQLite3 database engine to store state. In most cases npm should download pre-built binary components the will make use of any pre-installed SQLite3 libraries available on your system, but in somecases it may need to build these from the bundled source which will require the build tools mentioned earlier.
+#### Node.js
 
-### Install
+FlowForge requires ***Node.js v16***.
 
- - Download the Installer zip file
- - Create a directory to house the FlowForge instance e.g. `/opt/flowforge`
- - Unzip the Installer zip inside this directory
- - From within the directory run `./install.sh` or `install.bat` 
- - If prompted install NodeJS v16 (Linux only)
- - On Linux you will be asked if you want to run FlowForge as a service, if you answer yes:
-   - Decide if you want to run the sevice as the current user or as a new `flowforge` user
-   - Once complete you can start the service with `sudo service flowforge start`
- - If you answer no to the service or are running on MacOS or Windows then:
-   - Once the install completes you can start the FlowForge platform with `./bin/flowforge.sh` or `bin\flowforge.bat`
+##### Linux
 
-### Configuration
+The install script will check to see if it can find a suitable version of Node.js.
+If not, it will offer to install it for you.
 
-Most configuration is done via the web interface. The following values can be changed in the `etc/flowforge.yml` file in the FlowForge home directory.
+It will also ensure you have the appropriate build tools installed that are often
+needed by Node.js modules to build native components.
+
+##### Windows/MacOS
+
+If the install script cannot find a suitable version of Node.js, it will exit.
+
+You will need to manually install it before proceeding. Information about
+how to do this can be found on the Node.js website here:
+
+[https://nodejs.org/en/download](https://nodejs.org/en/download)
+
+You will also need to install the appropriate build tools.
+
+On Windows, the standard Node.js installer will offer to do that for you.
+
+On MacOS, you will need the `XCode Command Line Tools` to be installed. This can
+be done by running the following command:
 
 ```
-port: 3000
-base_url: http://localhost:3000
-db:
-  type: sqlite
-  storage: forge.db
-driver:
-  type: localfs
-  options:
-    start_port: 7880
-email:
-  enabled: true
-  smtp:
-    host: localhost
-    port: 587
-    secure: false
-    auth:
-      user: admin
-      pass: password
+xcode-select --install
 ```
 
-- `port` Which port to the FlowForge platform should listen on. default `3000`
-- `base_url` The URL to access the FlowForge platform. default `http://localhost:3000`
-- `db`
-  - `type` Which storage engine to use. default `sqlite`
-  - `storage` Name of local database file. default `forge.db`
-- `driver`
-  - `type` Which FlowForge Project driver to use. default `localfs`
-  - `options` driver options
-    - `start_port` Which port the first Project will listen on. default `7880`
-- `email`
-  - `host` The hostname for a SMTP server to be used to send email. default not set (email disabled)
-  - `port` The port for the SMTP server to be used to send email. default not set
-  - `secure` To use TLS when connecting to SMTP server. default `false` (Where supported `START_TLS` will still be used)
-  - `auth`
-    - `user` A username to authenticate with the SMTP server
-    - `pass` A passsword to authenticate with the SMTP server
+### Installing FlowForge
 
-Apart from setting the SMTP details the most likely change to make will be the `base_url` value. Chaning this to the match the IP address of the machine running FlowForge will allow you to access both the FlowForge UI and the Node-RED instances from other machines on your network. e.g. if running on `192.168.1.10` then `base_url=http://192.168.1.10:3000` would be the correct setting.
+1. Create a directory to be the home of your FlowForge install. For example: `/opt/flowforge`
 
-Changes to `etc/flowforge.yml` only take effect when the platform is restarted.
+   For Linux/MacOS:
 
-### First run
+    ```
+    sudo mkdir /opt/flowforge
+    sudo chown $USER /opt/flowforge
+    ```
 
- - You access the platform by pointing a browser at [http://localhost:3000](http://localhost:3000)
- - You will be asked to create a Administrator user the first time you connect
- - Once logged in as the new user you will be prompted to create your first team.
- - From there you can create Projects (instances of Node-RED) which will be managed as part of the team.
+2. Download the Installer zip file from https://github.com/flowforge/installer/releases
 
- After the first start the following will be created in the `var` directory
+3. Unzip the downloaded file into a temporary location and copy its contents to
+   the FlowForge directory
 
-  - `forge.db` this is the database that holds all the project settings
-  - `projects` this directory holds the userDir for each Project instance.
+   ```
+    cd /tmp/
+    unzip flowforge-installer-x.y.z.zip
+    cp -R flowforge-installer-x.y.z/* /opt/flowforge
+    ```
+
+4. Run the installer and follow the prompts
+
+    ```
+    cd /opt/flowforge
+    sh ./install.sh
+    ```
+
+#### Installing as a service
+
+On Linux, the installer will ask if you want to run FlowForge as a service.
+This will mean it starts automatically whenever you restart your device.
+
+If you select this option, it will ask if you want to run the service as the
+current user, or create a new `flowforge` user. If you choose to create the
+user, it will also change the ownership of the FlowForge directory to that user.
 
 
-## Issues
+### Configuring FlowForge
 
-If you come across any issues please raise them here: [https://github.com/flowforge/flowforge/issues](https://github.com/flowforge/flowforge/issues)
+The default FlowForge configuration is provided in the file `/opt/flowforge/etc/flowforge.yml`.
+
+For more details on the options available, see the [configuration guide](https://github.com/flowforge/flowforge/tree/main/docs/install/configuration.md).
+
+
+### Running FlowForge
+
+If you have installed FlowForge as a service, it can be started by running:
+
+```
+service flowforge start
+```
+
+To run it manually, you can use:
+
+ - Linux/MacOS:
+    ```
+    /opt/flowforge/bin/flowforge.sh
+    ```
+
+ - Windows:
+
+   Use the file `bin/flowforge.bat` in the FlowForge directory
+
+### First Run Setup
+
+Once FlowForge is started, you can access the platform in your browser at [http://localhost:3000](http://localhost:3000).
+
+The first time you access it, the platform will take you through creating an
+administrator for the platform and other configuration options.
+
+For more information, follow [this guide](https://github.com/flowforge/flowforge/tree/main/docs/install/first-run.md).

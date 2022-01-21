@@ -24,9 +24,9 @@ jobs:
         
       - name: Build Zip
         run: |
-          mkdir flowforge-installer-${{ env.GITHUB_REF }}
-          cp -R * flowforge-installer-${{ env.GITHUB_REF }}
-          zip -r flowforge-installer-${{ env.GITHUB_REF }}.zip flowforge-installer-${{ env.GITHUB_REF }}
+          mkdir "flowforge-installer-${{ github.ref }}"
+          cp -R app bin etc var install.* LICENSE README.md "flowforge-installer-${{ github.ref }}"
+          zip -r "flowforge-installer-${{ github.reg }}.zip" "flowforge-installer-${{ github.ref }}"
           
         
       - name: Release

@@ -23,6 +23,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Build Zip
+        id: build-zip
         run: |
           TAG=$(echo $GITHUB_REF | awk -F '/' '{ print $3}' | sed 's/v//')
           echo $TAG
@@ -31,9 +32,11 @@ jobs:
           cp -R app bin etc var install.* LICENSE README.md "flowforge-installer-$TAG"
           zip -r "flowforge-installer-$TAG.zip" "flowforge-installer-$TAG"
           
-        
+      - name: Show Env
+        run: env
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: flowforge-installer-${{ env.tag }}.zip
+          files: flowforge-installer-${{ steps.build-zip.outputs.tag }}.zip
         

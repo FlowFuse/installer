@@ -6,7 +6,7 @@ platform.
 Please refer to the main documentation for a complete guide to installing and
 setting up the platform: https://github.com/flowforge/flowforge/tree/main/docs
 
-### Prerequistes
+### Prerequisite
 
 #### Operating System
 
@@ -16,7 +16,7 @@ The install script has been tested against the following operating systems:
  - Debian Buster/Bullseye
  - Fedora 35
  - Ubuntu 20.04
- - CentOS 8/RHEL 8/Amzon Linux 2
+ - CentOS 8/RHEL 8/Amazon Linux 2
  - MacOS Big Sur
  - Windows 10
 

@@ -6,7 +6,7 @@ platform.
 Please refer to the main documentation for a complete guide to installing and
 setting up the platform: https://github.com/flowforge/flowforge/tree/main/docs
 
-### Prerequisite
+### Prerequisites
 
 #### Operating System
 

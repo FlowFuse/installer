@@ -1,15 +1,19 @@
 {
-  "name": "flowforge-localfs",
+  "name": "@flowforge/flowforge-localfs",
   "version": "0.1.0",
   "description": "FlowForge",
+  "private": true,
   "bugs": {
     "url": "https://github.com/flowforge/flowforge/issues"
   },
   "author": {
     "name": "FlowForge Inc."
   },
-  "license": "SEE LICENSE IN ./LICENSE",
+  "license": "SEE LICENSE IN ../LICENSE",
   "dependencies": {
     "@flowforge/flowforge": "^0.1.0"
+  },
+  "engines": {
+    "node": ">=16.x"
   }
 }

@@ -76,17 +76,17 @@ xcode-select --install
 
    For Linux/MacOS:
    ```
-    cd /tmp/
-    unzip flowforge-installer-x.y.z.zip
-    cp -R flowforge-installer-x.y.z/* /opt/flowforge
+   cd /tmp/
+   unzip flowforge-installer-x.y.z.zip
+   cp -R flowforge-installer-x.y.z/* /opt/flowforge
    ```
 
    For Windows:
    ```console
-    cd c:\temp
-    tar -xf flowforge-installer-x.y.z.zip
-    xcopy /E /I flowforge-installer-x.y.z c:\flowforge
-    ```
+   cd c:\temp
+   tar -xf flowforge-installer-x.y.z.zip
+   xcopy /E /I flowforge-installer-x.y.z c:\flowforge
+   ```
 
 4. Run the installer and follow the prompts
 

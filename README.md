@@ -127,8 +127,9 @@ You can see which ports are reserved on a Windows machine using the command...
 netsh interface ipv4 show excludedportrange protocol=tcp
 ```
 
-_INFO: Ports between 10000 ~ 49000 on windows are typically not included in the default reservation_
+IMPORTANT: When modifying `start_port` (default 7880), be aware that FlowForge uses port numbers incrementally and in pairs separated by 1000. e.g. If `start_port` is set to `6000`, it will allocate ports `6000` and `7000` to the 1st project then ports `6001` and `7001` to the next project (and so on). 
 
+_INFO: Ports between 10000 ~ 49000 on windows are typically not included in the default reservation_
 ### Running FlowForge
 
 If you have installed FlowForge as a service, it can be started by running:

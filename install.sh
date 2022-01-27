@@ -68,7 +68,7 @@ else
   echo " Do you want to install NodeJS $MIN_NODEJS?"
   echo "**************************************************************"
   read -p "y/N: " yn
-  if [ -x "${yn}"]; then
+  if [ -x "${yn}" ]; then
     yn=n
   fi
   if [[ "$yn" == "y" ]] || [[ "$yn" == "Y" ]]; then 

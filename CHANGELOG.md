@@ -1,5 +1,6 @@
 #### 0.4.0: Release
 
+ - Update project automation (#29) @knolleary
 
 #### 0.3.0: Release
 

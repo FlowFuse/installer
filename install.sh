@@ -126,6 +126,9 @@ else
   exit 1
 fi
 
+#ensure executables are executable
+sudo chmod +x bin/*
+
 #clean up for upgrades
 cd app
 rm -rf node_modules package-lock.json

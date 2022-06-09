@@ -1,3 +1,6 @@
+#### 0.6.0: Release
+
+
 #### 0.5.0: Release
 
  - Add ff-install-stack scripts (#31) @hardillb

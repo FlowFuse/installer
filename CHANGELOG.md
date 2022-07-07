@@ -1,3 +1,6 @@
+#### 0.7.0: Release
+
+
 #### 0.6.0: Release
 
  - Ensure bin/ff-install-stack.bat bin/ff-install-stack.sh bin/flowforge.bat bin/flowforge.sh is executable (#34) @hardillb

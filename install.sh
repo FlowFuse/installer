@@ -56,6 +56,29 @@ if [ -x "$(command -v node)" ]; then
     echo "**************************************************************"
     echo " NodeJS Version $MIN_NODEJS or newer found "
     echo "**************************************************************"
+    if [ ! -x "$(command -v make)" ]; then
+      echo "**************************************************************"
+      echo " No built tools found. "
+      echo " Do you want to install"
+      echo "**************************************************************"
+      read -p "Y/n" yn
+      if [ -x "${yn}" ]; then
+        yn=y
+      fi
+      if [[ "$yn" == "y" ]] || [[ "$yn" == "Y" ]]; then
+        if [[ "$MYOS" == "debian" ]] || [[ "$MYOS" == "ubuntu" ]] || [[ "$MYOS" == "raspbian" ]]; then
+          sudo apt-get install -y build-essential
+        elif [[ "$MYOS" == "fedora" ]]; then
+          sudo dnf group install -y "C Development Tools and Libraries"
+        fi
+      else
+        echo "**************************************************************"
+        echo " You will need to manually install Build tools first             "
+        echo " exiting                                                    "
+        echo "**************************************************************"
+        exit 1
+      fi
+    fi
   else
     echo "**************************************************************"
     echo " You need NodeJS $MIN_NODEJS or newer, please upgrade "

@@ -96,6 +96,9 @@ else
   fi
   if [[ "$yn" == "y" ]] || [[ "$yn" == "Y" ]]; then 
     if [[ "$MYOS" == "debian" ]] || [[ "$MYOS" == "ubuntu" ]] || [[ "$MYOS" == "raspbian" ]]; then
+      if [ ! -x "$(command -v curl)" ]; then
+        sudo apt-get install -y curl
+      fi
       curl -sSL "https://deb.nodesource.com/setup_$MIN_NODEJS.x" | sudo -E bash -
       sudo apt-get install -y nodejs build-essential
     elif [[ "$MYOS" == "fedora" ]]; then
@@ -103,6 +106,9 @@ else
       sudo dnf module install -y "nodejs:$MIN_NODEJS/default"
       sudo dnf group install -y "C Development Tools and Libraries"
     elif [[ "$MYOS" == "rhel" ]] || [[ "$MYOS" == "centos" || "$MYOS" == "amzn" ]]; then
+      if [ ! -x "$(command -v curl)" ]; then
+        sudo yum install -y curl
+      fi
       curl -fsSL "https://rpm.nodesource.com/setup_$MIN_NODEJS.x" | sudo -E bash -
       sudo yum install -y nodejs
       sudo yum group install -y "Development Tools"

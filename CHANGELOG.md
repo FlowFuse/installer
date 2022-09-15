@@ -1,4 +1,4 @@
-#### 0.9.1: Maintence Release
+#### 0.9.1: Maintenance Release
 
  - Test for curl and install if missing (#42) @hardillb
 

@@ -3,9 +3,11 @@
 echo "**************************************************************"
 echo " FlowForge Installer                                        "
 echo "                                                            "
-echo " Warning:                                                   "
-echo " If this script needs to install NodeJS it may ask for your "
-echo " password in able to run some commands as root.             "
+echo " Warning: "
+echo " The install may need root priviledges at times, it uses    "   
+echo " sudo so may ask for your password.                         "
+echo " root access is used to install NodeJS if needed and to set "
+echo " directory pemissions                                       "                                                
 echo "                                                            "
 echo "**************************************************************"
 
@@ -130,7 +132,7 @@ else
       echo " - CentOS                                                   "
       echo " - RHEL                                                     "
       echo " - Amazon Linux 2                                           "
-      echo " - OSx                                                      "
+      echo " - macOS                                                    "
       echo "**************************************************************"
       exit 1 
     fi
@@ -156,6 +158,10 @@ else
 fi
 
 #ensure executables are executable
+echo "**************************************************************"
+echo " Setting execute bit on FlowForge binaries, this uses sudo  "
+echo " to ensure correct permissions                              "
+echo "**************************************************************"
 sudo chmod +x bin/*
 
 #clean up for upgrades
@@ -252,4 +258,9 @@ if [[ "$OSTYPE" == linux* ]]; then
 
     fi
   fi
+elif
+  echo "**************************************************************"
+  echo " Install complete "
+  echo " You can start FlowForge by running './bin/flowforge.sh'"
+  echo "**************************************************************"
 fi

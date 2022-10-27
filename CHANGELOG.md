@@ -1,3 +1,7 @@
+#### 1.0.0: Release
+
+ - Clean up messaging around sudo (#46) @hardillb
+
 #### 0.10.0: Release
 
 

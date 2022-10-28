@@ -258,7 +258,7 @@ if [[ "$OSTYPE" == linux* ]]; then
 
     fi
   fi
-elif
+else
   echo "**************************************************************"
   echo " Install complete "
   echo " You can start FlowForge by running './bin/flowforge.sh'"

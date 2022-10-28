@@ -1,3 +1,7 @@
+#### 1.0.1: Maintenance Release
+
+ - Fix typo on MacOS in installer.sh (#49) @hardillb 
+
 #### 1.0.0: Release
 
  - Clean up messaging around sudo (#46) @hardillb

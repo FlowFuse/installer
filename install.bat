@@ -64,6 +64,11 @@ call npm install --production --no-fund --no-audit --silent
 cd ..
 copy app\node_modules\@flowforge\flowforge\etc\flowforge.yml etc
 
+choice /M "Do you want to install latest Node-RED version as a Stack?"
+if %ERRORLEVEL% EQU 1 (
+    bin\ff-install-stack.bat 3.0.2
+)
+
 echo **************************************************************
 echo * Installed FlowForge                                        *
 echo * Start with bin\flowforge.bat

@@ -180,15 +180,10 @@ if [ ! -f etc/flowforge.yml ]; then
 fi
 
 echo "**************************************************************"
-echo " Would you like to install latest Node-RED version as a Stack?"
+echo " Installing lastest Node-RED as a stack"
 echo "**************************************************************"
-read -p "Y/n: " yn
-if [ -z "${yn}" ]; then
-  yn=Y
-fi
-if [[ "$yn" == "y" ]] || [[ "$yn" == "Y" ]]; then 
-  bin/ff-install-stack.sh 3.0.2
-fi
+bin/ff-install-stack.sh latest
+
 
 if [[ "$OSTYPE" == linux* ]]; then
   if [ -x "$(command -v systemctl)" ]; then

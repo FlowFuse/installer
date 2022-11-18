@@ -179,6 +179,11 @@ if [ ! -f etc/flowforge.yml ]; then
   cp app/node_modules/@flowforge/flowforge/etc/flowforge.yml etc/flowforge.yml
 fi
 
+echo "**************************************************************"
+echo " Installing lastest Node-RED as a stack"
+echo "**************************************************************"
+bin/ff-install-stack.sh latest
+
 
 if [[ "$OSTYPE" == linux* ]]; then
   if [ -x "$(command -v systemctl)" ]; then

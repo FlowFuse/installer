@@ -65,6 +65,12 @@ cd ..
 copy app\node_modules\@flowforge\flowforge\etc\flowforge.yml etc
 
 echo **************************************************************
+echo * Installing lastest Node-RED as a stack                     *
+echo **************************************************************
+bin\ff-install-stack.bat latest
+
+
+echo **************************************************************
 echo * Installed FlowForge                                        *
 echo * Start with bin\flowforge.bat
 echo **************************************************************

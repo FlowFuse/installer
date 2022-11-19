@@ -56,28 +56,35 @@ IF %ERRORLEVEL% NEQ 0 (
 )
 
 
-
 REM #### Begin Installation #######################################
 echo *                                                            *
 echo * Installing FlowForge...                                    *
 title FlowForge Installer - Installing
 
-REM Clean up first
+REM Clean up before install
 cd app
 if exist node_modules rd /q /s node_modules
 if exist package-lock.json del /q package-lock.json
 
+REM #### Install Flowforge ########################################
 call npm install --production --no-fund --no-audit --silent 
-
 cd ..
 copy /Y app\node_modules\@flowforge\flowforge\etc\flowforge.yml etc > nul
-
-REM #### Print success notice #####################################
 call :PRINT "> FlowForge Install Complete"
+
+REM #### Install Node-RED Stack ###################################
+echo *                                                            *
+echo * Installing lastest Node-RED as a stack...                  *
+bin\ff-install-stack.bat latest
+call :PRINT "> Node-RED Stack Install Complete"
+
+
+REM #### All done, print final part ###############################
 echo *                                                            *
 echo * FlowForge can be started with bin\flowforge.bat            *
 echo *                                                            *
 echo **************************************************************
+
 title FlowForge Installer - Complete
 goto :the_end
 

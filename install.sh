@@ -180,7 +180,7 @@ if [ ! -f etc/flowforge.yml ]; then
 fi
 
 echo "**************************************************************"
-echo " Installing lastest Node-RED as a stack"
+echo " Installing latest Node-RED as a stack"
 echo "**************************************************************"
 bin/ff-install-stack.sh latest
 

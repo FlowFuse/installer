@@ -30,7 +30,7 @@ jobs:
           echo "::set-output name=tag::$TAG"
           mkdir "flowforge-installer-$TAG"
           cp -R app bin etc var install.* LICENSE README.md "flowforge-installer-$TAG"
-          zip -r "flowforge-installer-$TAG.zip" "flowforge-installer-$TAG"
+          zip -r "flowforge-installer.zip" "flowforge-installer-$TAG"
           
       - name: Show Env
         run: env
@@ -38,5 +38,5 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: flowforge-installer-${{ steps.build-zip.outputs.tag }}.zip
+          files: flowforge-installer.zip
         

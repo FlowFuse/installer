@@ -74,7 +74,7 @@ call :PRINT "> FlowForge Install Complete"
 
 REM #### Install Node-RED Stack ###################################
 echo *                                                            *
-echo * Installing lastest Node-RED as a stack...                  *
+echo * Installing latest Node-RED as a stack...                   *
 bin\ff-install-stack.bat latest
 call :PRINT "> Node-RED Stack Install Complete"
 

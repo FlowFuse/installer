@@ -20,6 +20,8 @@ The install script has been tested against the following operating systems:
  - MacOS Big Sur & Monterey on Intel & Apple M processors
  - Windows 10 & 11
 
+[^1]: Arm6 devices, such as the original Raspberry Pi Zero and Zero W are not supported.
+
 ### Node.js
 
 FlowForge requires ***Node.js v16***.
@@ -123,7 +125,7 @@ The default configuration file already contains everything you need to get start
 It will allow you to access FlowForge and the projects you create, from the same server running the platform. 
 If you want to allow access from other devices on the network, you must edit the configuration file and 
 change the `host` setting to 0.0.0.0. NOTE: We do not support changing the `host` value once you have created a project.
-For more information on all of the options available, see the [configuration guide](../configuration.md).
+For more information on all of the options available, see the [configuration guide](https://github.com/flowforge/flowforge/tree/main/docs/install/configuration.md).
 
 
 ## Running FlowForge
@@ -153,4 +155,4 @@ Once FlowForge is started, you can access the platform in your browser at [http:
 The first time you access it, the platform will take you through creating an
 administrator for the platform and other configuration options.
 
-For more information, follow [this guide](../first-run.md).
+For more information, follow [this guide](https://github.com/flowforge/flowforge/tree/main/docs/install/first-run.md).

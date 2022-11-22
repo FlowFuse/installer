@@ -63,25 +63,30 @@ You will also need to install the appropriate build tools.
     mkdir c:\flowforge
     ```
 
-2. Download the Installer zip file from https://github.com/flowforge/installer/releases
+2. Download the latest [Installer zip file](https://github.com/flowforge/installer/releases/latest) into a temporary location.
 
-3. Unzip the downloaded file into a temporary location and copy its contents to
+
+3. Unzip the downloaded zip file and copy its contents to
    the FlowForge directory
 
-   For Linux/MacOS:
-   ```
-   cd /tmp/
-   unzip flowforge-installer-x.y.z.zip
-   cp -R flowforge-installer-x.y.z/* /opt/flowforge
-   ```
+   ### For Linux/MacOS: 
+   _Assumes `/tmp/` is the directory where you downloaded `flowforge-installer.zip`_
+    ```
+    cd /tmp/
+    unzip flowforge-installer.zip
+    cp -R flowforge-installer/* /opt/flowforge
+    ```
+    
 
-   For Windows:
-   ```
-   mkdir cd c:\temp
-   cd c:\temp
-   tar -xf flowforge-installer-x.y.z.zip
-   xcopy /E /I flowforge-installer-x.y.z c:\flowforge
-   ```
+   ### For Windows:
+   _Assumes `c:\temp` is the directory where you downloaded `flowforge-installer.zip`_
+    ```
+    cd c:\temp
+    tar -xf flowforge-installer.zip
+    xcopy /E /I flowforge-installer c:\flowforge
+    ```
+    
+
 
 4. Run the installer and follow the prompts
 
@@ -97,6 +102,7 @@ You will also need to install the appropriate build tools.
     install.bat
     ```
 
+
 ### Installing as a service (optional)
 
 On Linux, the installer will ask if you want to run FlowForge as a service.
@@ -106,13 +112,19 @@ If you select this option, it will ask if you want to run the service as the
 current user, or create a new `flowforge` user. If you choose to create the
 user, it will also change the ownership of the FlowForge directory to that user.
 
-## Configuring FlowForge (optional)
+## Configuring FlowForge
 
 The default FlowForge configuration is provided in the file `flowforge.yml`
 * Linux/MacOS: `/opt/flowforge/etc/flowforge.yml`
 * Windows: `c:\flowforge\etc\flowforge.yml`
 
-For more details on the options available, see the [configuration guide](https://github.com/flowforge/flowforge/tree/main/docs/install/configuration.md).
+The default configuration file already contains everything you need to get started with FlowForge.
+
+It will allow you to access FlowForge and the projects you create, from the same server running the platform. 
+If you want to allow access from other devices on the network, you must edit the configuration file and 
+change the `host` setting to 0.0.0.0. NOTE: We do not support changing the `host` value once you have created a project.
+For more information on all of the options available, see the [configuration guide](../configuration.md).
+
 
 ## Running FlowForge
 
@@ -141,4 +153,4 @@ Once FlowForge is started, you can access the platform in your browser at [http:
 The first time you access it, the platform will take you through creating an
 administrator for the platform and other configuration options.
 
-For more information, follow [this guide](https://github.com/flowforge/flowforge/tree/main/docs/install/first-run.md).
+For more information, follow [this guide](../first-run.md).

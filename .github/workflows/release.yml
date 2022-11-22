@@ -29,7 +29,7 @@ jobs:
           echo $TAG
           echo "::set-output name=tag::$TAG"
           mkdir "flowforge-installer-$TAG"
-          cp -R app bin etc var install.* LICENSE README.md "flowforge-installer-$TAG"
+          cp -R app bin broker etc var install.* LICENSE README.md "flowforge-installer-$TAG"
           zip -r "flowforge-installer.zip" "flowforge-installer-$TAG"
           
       - name: Show Env

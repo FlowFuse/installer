@@ -20,6 +20,8 @@ The install script has been tested against the following operating systems:
  - MacOS Big Sur & Monterey on Intel & Apple M processors
  - Windows 10 & 11
 
+[^1]: Arm6 devices, such as the original Raspberry Pi Zero and Zero W are not supported.
+
 ### Node.js
 
 FlowForge requires ***Node.js v16***.
@@ -63,25 +65,30 @@ You will also need to install the appropriate build tools.
     mkdir c:\flowforge
     ```
 
-2. Download the Installer zip file from https://github.com/flowforge/installer/releases
+2. Download the latest [Installer zip file](https://github.com/flowforge/installer/releases/latest) into a temporary location.
 
-3. Unzip the downloaded file into a temporary location and copy its contents to
+
+3. Unzip the downloaded zip file and copy its contents to
    the FlowForge directory
 
-   For Linux/MacOS:
-   ```
-   cd /tmp/
-   unzip flowforge-installer-x.y.z.zip
-   cp -R flowforge-installer-x.y.z/* /opt/flowforge
-   ```
+   ### For Linux/MacOS: 
+   _Assumes `/tmp/` is the directory where you downloaded `flowforge-installer.zip`_
+    ```
+    cd /tmp/
+    unzip flowforge-installer.zip
+    cp -R flowforge-installer/* /opt/flowforge
+    ```
+    
 
-   For Windows:
-   ```
-   mkdir cd c:\temp
-   cd c:\temp
-   tar -xf flowforge-installer-x.y.z.zip
-   xcopy /E /I flowforge-installer-x.y.z c:\flowforge
-   ```
+   ### For Windows:
+   _Assumes `c:\temp` is the directory where you downloaded `flowforge-installer.zip`_
+    ```
+    cd c:\temp
+    tar -xf flowforge-installer.zip
+    xcopy /E /I flowforge-installer c:\flowforge
+    ```
+    
+
 
 4. Run the installer and follow the prompts
 
@@ -97,6 +104,7 @@ You will also need to install the appropriate build tools.
     install.bat
     ```
 
+
 ### Installing as a service (optional)
 
 On Linux, the installer will ask if you want to run FlowForge as a service.
@@ -106,25 +114,19 @@ If you select this option, it will ask if you want to run the service as the
 current user, or create a new `flowforge` user. If you choose to create the
 user, it will also change the ownership of the FlowForge directory to that user.
 
-## Configuring FlowForge (optional)
+## Configuring FlowForge
 
 The default FlowForge configuration is provided in the file `flowforge.yml`
 * Linux/MacOS: `/opt/flowforge/etc/flowforge.yml`
 * Windows: `c:\flowforge\etc\flowforge.yml`
 
-For more details on the options available, see the [configuration guide](https://github.com/flowforge/flowforge/tree/main/docs/install/configuration.md).
+The default configuration file already contains everything you need to get started with FlowForge.
 
-## Before running FlowForge (Windows Only)
-Some Windows applications like Hyper-V and WSL can reserve TCP ports. This can prevent FlowForge from running correctly. If necessary, adjust the starting port variable `driver.options.start_port` in the FlowForge configuration yaml file.
+It will allow you to access FlowForge and the projects you create, from the same server running the platform. 
+If you want to allow access from other devices on the network, you must edit the configuration file and 
+change the `host` setting to 0.0.0.0. NOTE: We do not support changing the `host` value once you have created a project.
+For more information on all of the options available, see the [configuration guide](https://github.com/flowforge/flowforge/tree/main/docs/install/configuration.md).
 
-You can see which ports are reserved on a Windows machine using the command...
-```console
-netsh interface ipv4 show excludedportrange protocol=tcp
-```
-
-IMPORTANT: When modifying `start_port` (default 7880), be aware that FlowForge uses port numbers incrementally and in pairs separated by 1000. e.g. If `start_port` is set to `6000`, it will allocate ports `6000` and `7000` to the 1st project then ports `6001` and `7001` to the next project (and so on). 
-
-_INFO: Ports between 10000 ~ 49000 on windows are typically not included in the default reservation_
 
 ## Running FlowForge
 

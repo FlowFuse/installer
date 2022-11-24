@@ -1,3 +1,15 @@
+#### 1.1.0: Release
+
+ - use `call` to run ff-stack-install.bat (#63) @Steve-Mcl
+ - Remove Window clashing port check (#58) @hardillb
+ - Update the path in the zip to match the docs (#60) @hardillb
+ - Ensure broker config is in installer zip (#59) @hardillb
+ - Fix script typo (#55) @knolleary
+ - Add template mosquitto.conf (#52) @hardillb
+ - Remove version number from release zip file (#57) @hardillb
+ - Silence windows batch errors, update README (Developer Demo follow ups) (#54) @Steve-Mcl
+ - Ask about installing latest NR version as a stack (#51) @hardillb
+
 #### 1.0.1: Maintenance Release
 
  - Fix typo on MacOS in installer.sh (#49) @hardillb 

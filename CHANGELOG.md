@@ -1,3 +1,7 @@
+#### 1.1.2: Release
+
+ - Update for FlowForge 1.1.2
+
 #### 1.1.0: Release
 
  - use `call` to run ff-stack-install.bat (#63) @Steve-Mcl

@@ -1,3 +1,6 @@
+#### 1.2.0: Release
+
+
 #### 1.1.0: Release
 
  - use `call` to run ff-stack-install.bat (#63) @Steve-Mcl

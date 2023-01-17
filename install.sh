@@ -206,6 +206,9 @@ if [[ "$OSTYPE" == linux* ]]; then
       echo "**************************************************************"
 
       read -p "Current/FlowForge (c/F): " cf
+      if [ -z "${cf}" ]; then
+        cf=F
+      fi
       if [[ "$cf" == "c" ]] || [[ "$cf" == "C" ]]; then
 
         FF_USER=`id -u -n`

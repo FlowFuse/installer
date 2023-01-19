@@ -1,3 +1,8 @@
+#### 1.3.0: Release
+
+ - Ensure default answer for "Current user" or "create FlowForge user" (#72) @hardillb
+ - Remove 0.0.0.0 binding from mosquitto.conf (#70) @hardillb
+
 #### 1.2.0: Release
 
 

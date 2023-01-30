@@ -27,7 +27,7 @@ jobs:
         run: |
           TAG=$(echo $GITHUB_REF | awk -F '/' '{ print $3}' | sed 's/v//')
           echo $TAG
-          echo "::set-output name=tag::$TAG"
+          echo "{tag}={$TAG}" >> $GITHUB_OUTPUT
           mkdir "flowforge-installer"
           cp -R app bin broker etc var install.* LICENSE README.md "flowforge-installer"
           zip -r "flowforge-installer.zip" "flowforge-installer"

@@ -20,14 +20,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         
       - name: Build Zip
         id: build-zip
         run: |
-          TAG=$(echo $GITHUB_REF | awk -F '/' '{ print $3}' | sed 's/v//')
-          echo $TAG
-          echo "::set-output name=tag::$TAG"
           mkdir "flowforge-installer"
           cp -R app bin broker etc var install.* LICENSE README.md "flowforge-installer"
           zip -r "flowforge-installer.zip" "flowforge-installer"

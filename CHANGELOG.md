@@ -1,3 +1,8 @@
+#### 1.4.0: Release
+
+ - Update link to installer zip (#75) @hardillb
+ - Chore: Patching CI deprecation warnings (#74) @UlisesGascon
+
 #### 1.3.0: Release
 
  - Ensure default answer for "Current user" or "create FlowForge user" (#72) @hardillb

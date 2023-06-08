@@ -1,6 +1,6 @@
 {
     "name": "@flowforge/flowforge-localfs",
-    "version": "1.7.2",
+    "version": "1.8.0",
     "description": "FlowForge",
     "private": true,
     "bugs": {
@@ -11,7 +11,7 @@
     },
     "license": "SEE LICENSE IN ../LICENSE",
     "dependencies": {
-        "@flowforge/flowforge": "^1.7.2"
+        "@flowforge/flowforge": "^1.8.0"
     },
     "engines": {
         "node": ">=16.x"

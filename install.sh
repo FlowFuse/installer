@@ -26,6 +26,8 @@ realpath() {
 
 DIR="$(dirname "$(realpath "$0")")"
 
+cd $DIR
+
 MIN_NODEJS=16
 
 case "$OSTYPE" in
@@ -162,10 +164,10 @@ echo "**************************************************************"
 echo " Setting execute bit on FlowForge binaries, this uses sudo  "
 echo " to ensure correct permissions                              "
 echo "**************************************************************"
-sudo chmod +x bin/*
+sudo chmod +x $DIR/bin/*
 
 #clean up for upgrades
-cd app
+cd $DIR/app
 rm -rf node_modules package-lock.json
 
 echo "**************************************************************"
@@ -175,14 +177,14 @@ echo "**************************************************************"
 npm install --production --no-fund --no-audit --silent 
 
 cd ..
-if [ ! -f etc/flowforge.yml ]; then
-  cp app/node_modules/@flowforge/flowforge/etc/flowforge.yml etc/flowforge.yml
+if [ ! -f $DIR/etc/flowforge.yml ]; then
+  cp $DIR/app/node_modules/@flowforge/flowforge/etc/flowforge.yml $DIR/etc/flowforge.yml
 fi
 
 echo "**************************************************************"
 echo " Installing latest Node-RED as a stack"
 echo "**************************************************************"
-bin/ff-install-stack.sh latest
+$DIR/bin/ff-install-stack.sh latest
 
 
 if [[ "$OSTYPE" == linux* ]]; then
@@ -234,18 +236,18 @@ if [[ "$OSTYPE" == linux* ]]; then
         exit 1
       fi 
       
-      sed 's!/opt/flowforge!'$DIR'!;s!User=pi!User='$FF_USER'!;s!Group=pi!Group='$FF_GROUP'!' etc/systemd/flowforge.service-skel > etc/systemd/flowforge.service
+      sed 's!/opt/flowforge!'$DIR'!;s!User=pi!User='$FF_USER'!;s!Group=pi!Group='$FF_GROUP'!' $DIR/etc/systemd/flowforge.service-skel > $DIR/etc/systemd/flowforge.service
 
       
       if [[ "$MYOS" == "debian" ]] || [[ "$MYOS" == "ubuntu" ]] || [[ "$MYOS" == "raspbian" ]]; then
         #Debian/Ubuntu /lib/systemd/system/
-        sudo cp etc/systemd/flowforge.service /lib/systemd/system/
+        sudo cp $DIR/etc/systemd/flowforge.service /lib/systemd/system/
       elif [[ "$MYOS" == "rhel" ]] || [[ "$MYOS" == "centos" || "$MYOS" == "amzn" || "$MYOS" == "fedora" ]]; then
         #RHEL/Fedora /etc/systemd/system/
-        sudo cp etc/systemd/flowforge.service /etc/systemd/system/
+        sudo cp $DIR/etc/systemd/flowforge.service /etc/systemd/system/
       fi
 
-      sudo chown -R $FF_USER .
+      sudo chown -R $FF_USER $DIR
 
       sudo -u $FF_USER test -x $DIR/bin/flowforge.sh
       if [ $? -eq 1 ]; then

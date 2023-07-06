@@ -1,3 +1,7 @@
+#### 1.9.0: Release
+
+ - Update install.sh to run in right place (#83) @hardillb
+
 #### 1.8.0: Release
 
 

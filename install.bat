@@ -70,6 +70,7 @@ REM #### Install Flowforge ########################################
 call npm install --production --no-fund --no-audit --silent 
 cd ..
 copy /Y app\node_modules\@flowforge\flowforge\etc\flowforge.yml etc > nul
+copy /Y app\node_modules\@flowforge\file-server\etc/flowforge-storage.yml etc > nul
 call :PRINT "> FlowForge Install Complete"
 
 REM #### Install Node-RED Stack ###################################

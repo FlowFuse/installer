@@ -246,9 +246,11 @@ if [[ "$OSTYPE" == linux* ]]; then
       if [[ "$MYOS" == "debian" ]] || [[ "$MYOS" == "ubuntu" ]] || [[ "$MYOS" == "raspbian" ]]; then
         #Debian/Ubuntu /lib/systemd/system/
         sudo cp $DIR/etc/systemd/flowforge.service /lib/systemd/system/
+        sudo cp $DIR/etc/systemd/flowforge-file.service /lib/systemd/system/
       elif [[ "$MYOS" == "rhel" ]] || [[ "$MYOS" == "centos" || "$MYOS" == "amzn" || "$MYOS" == "fedora" ]]; then
         #RHEL/Fedora /etc/systemd/system/
         sudo cp $DIR/etc/systemd/flowforge.service /etc/systemd/system/
+        sudo cp $DIR/etc/systemd/flowforge-file.service /etc/systemd/system/
       fi
 
       sudo chown -R $FF_USER $DIR

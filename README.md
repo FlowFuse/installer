@@ -1,10 +1,10 @@
-# FlowForge Installer
+# FlowFuse Installer
 
-This repository provides the installer for local installations of the FlowForge
+This repository provides the installer for local installations of the FlowFuse
 platform.
 
 Please refer to the main documentation for a complete guide to installing and
-setting up the platform: https://github.com/flowforge/flowforge/tree/main/docs
+setting up the platform: https://github.com/flowfuse/flowforge/tree/main/docs
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ The install script has been tested against the following operating systems:
 
 ### Node.js
 
-FlowForge requires ***Node.js v16***.
+FlowFuse requires ***Node.js v16***.
 
 #### Linux
 
@@ -50,9 +50,9 @@ You will also need to install the appropriate build tools.
     xcode-select --install
     ```
 
-## Installing FlowForge
+## Installing FlowFuse
 
-1. Create a directory to be the base of your FlowForge install. For example: `/opt/flowforge` or `c:\flowforge`
+1. Create a directory to be the base of your FlowFuse install. For example: `/opt/flowforge` or `c:\flowforge`
 
    For Linux/MacOS:
     ```
@@ -65,7 +65,7 @@ You will also need to install the appropriate build tools.
     mkdir c:\flowforge
     ```
 
-2. Download the latest [Installer zip file](https://github.com/flowforge/installer/releases/latest/download/flowforge-installer.zip) into a temporary location.
+2. Download the latest [Installer zip file](https://github.com/flowfuse/installer/releases/latest/download/flowforge-installer.zip) into a temporary location.
 
 
 3. Unzip the downloaded zip file and copy its contents to
@@ -107,30 +107,30 @@ You will also need to install the appropriate build tools.
 
 ### Installing as a service (optional)
 
-On Linux, the installer will ask if you want to run FlowForge as a service.
+On Linux, the installer will ask if you want to run FlowFuse as a service.
 This will mean it starts automatically whenever you restart your device.
 
 If you select this option, it will ask if you want to run the service as the
 current user, or create a new `flowforge` user. If you choose to create the
 user, it will also change the ownership of the FlowForge directory to that user.
 
-## Configuring FlowForge
+## Configuring FlowFuse
 
-The default FlowForge configuration is provided in the file `flowforge.yml`
+The default FlowFuse configuration is provided in the file `flowforge.yml`
 * Linux/MacOS: `/opt/flowforge/etc/flowforge.yml`
 * Windows: `c:\flowforge\etc\flowforge.yml`
 
-The default configuration file already contains everything you need to get started with FlowForge.
+The default configuration file already contains everything you need to get started with FlowFuse.
 
-It will allow you to access FlowForge and the projects you create, from the same server running the platform. 
+It will allow you to access FlowFuse and the projects you create, from the same server running the platform. 
 If you want to allow access from other devices on the network, you must edit the configuration file and 
 change the `host` setting to 0.0.0.0. NOTE: We do not support changing the `host` value once you have created a project.
-For more information on all of the options available, see the [configuration guide](https://github.com/flowforge/flowforge/tree/main/docs/install/configuration.md).
+For more information on all of the options available, see the [configuration guide](https://github.com/flowfuse/flowforge/tree/main/docs/install/configuration.md).
 
 
-## Running FlowForge
+## Running FlowFuse
 
-If you have installed FlowForge as a service, it can be started by running:
+If you have installed FlowFuse as a service, it can be started by running:
 
 ```
 service flowforge start
@@ -150,9 +150,9 @@ To run it manually, you can use:
 
 ## First Run Setup
 
-Once FlowForge is started, you can access the platform in your browser at [http://localhost:3000](http://localhost:3000).
+Once FlowFuse is started, you can access the platform in your browser at [http://localhost:3000](http://localhost:3000).
 
 The first time you access it, the platform will take you through creating an
 administrator for the platform and other configuration options.
 
-For more information, follow [this guide](https://github.com/flowforge/flowforge/tree/main/docs/install/first-run.md).
+For more information, follow [this guide](https://github.com/flowfuse/flowforge/tree/main/docs/install/first-run.md).

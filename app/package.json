@@ -11,7 +11,8 @@
     },
     "license": "SEE LICENSE IN ../LICENSE",
     "dependencies": {
-        "@flowforge/flowforge": "^1.12.0"
+        "@flowforge/flowforge": "^1.12.0",
+        "@flowforge/file-server": "^1.12.0"
     },
     "engines": {
         "node": ">=16.x"

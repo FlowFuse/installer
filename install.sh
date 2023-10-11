@@ -180,6 +180,9 @@ cd ..
 if [ ! -f $DIR/etc/flowforge.yml ]; then
   cp $DIR/app/node_modules/@flowforge/flowforge/etc/flowforge.yml $DIR/etc/flowforge.yml
 fi
+if [ ! -f $DIR/etc/flowforge-storage.yml ]; then
+  cp $DIR/app/node_modules/@flowforge/file-server/etc/flowforge-storage.yml $DIR/etc/flowforge-storage.yml
+fi
 
 echo "**************************************************************"
 echo " Installing latest Node-RED as a stack"
@@ -237,14 +240,17 @@ if [[ "$OSTYPE" == linux* ]]; then
       fi 
       
       sed 's!/opt/flowforge!'$DIR'!;s!User=pi!User='$FF_USER'!;s!Group=pi!Group='$FF_GROUP'!' $DIR/etc/systemd/flowforge.service-skel > $DIR/etc/systemd/flowforge.service
+      sed 's!/opt/flowforge!'$DIR'!;s!User=pi!User='$FF_USER'!;s!Group=pi!Group='$FF_GROUP'!' $DIR/etc/systemd/flowforge-file.service-skel > $DIR/etc/systemd/flowforge-file.service
 
       
       if [[ "$MYOS" == "debian" ]] || [[ "$MYOS" == "ubuntu" ]] || [[ "$MYOS" == "raspbian" ]]; then
         #Debian/Ubuntu /lib/systemd/system/
         sudo cp $DIR/etc/systemd/flowforge.service /lib/systemd/system/
+        sudo cp $DIR/etc/systemd/flowforge-file.service /lib/systemd/system/
       elif [[ "$MYOS" == "rhel" ]] || [[ "$MYOS" == "centos" || "$MYOS" == "amzn" || "$MYOS" == "fedora" ]]; then
         #RHEL/Fedora /etc/systemd/system/
         sudo cp $DIR/etc/systemd/flowforge.service /etc/systemd/system/
+        sudo cp $DIR/etc/systemd/flowforge-file.service /etc/systemd/system/
       fi
 
       sudo chown -R $FF_USER $DIR

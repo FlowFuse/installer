@@ -1,3 +1,8 @@
+#### 1.13.0: Release
+
+ - Add file server (#87) @hardillb
+ - Update references to FlowFuse (#89) @hardillb
+
 #### 1.12.0: Release
 
 

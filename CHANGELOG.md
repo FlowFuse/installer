@@ -1,3 +1,7 @@
+#### 1.13.1: Release
+
+ - Bump to v1.13.1 of FlowFuse @hardillb
+
 #### 1.13.0: Release
 
  - Add file server (#87) @hardillb

@@ -1,9 +1,6 @@
 #### 1.14.0: Release
 
 
-#### 1.14.0: Release
-
-
 #### 1.13.1: Release
 
  - Bump to v1.13.1 of FlowFuse @hardillb

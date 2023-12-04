@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "**************************************************************"
-echo " FlowForge Installer                                        "
+echo " FlowFuse Installer                                         "
 echo "                                                            "
 echo " Warning: "
 echo " The install may need root priviledges at times, it uses    "   
@@ -161,7 +161,7 @@ fi
 
 #ensure executables are executable
 echo "**************************************************************"
-echo " Setting execute bit on FlowForge binaries, this uses sudo  "
+echo " Setting execute bit on FlowFuse binaries, this uses sudo   "
 echo " to ensure correct permissions                              "
 echo "**************************************************************"
 sudo chmod +x $DIR/bin/*
@@ -171,7 +171,7 @@ cd $DIR/app
 rm -rf node_modules package-lock.json
 
 echo "**************************************************************"
-echo " Installing FlowForge                                       "
+echo " Installing FlowFuse                                        "
 echo "**************************************************************"
 
 npm install --production --no-fund --no-audit --silent 
@@ -194,7 +194,7 @@ if [[ "$OSTYPE" == linux* ]]; then
   if [ -x "$(command -v systemctl)" ]; then
 
     echo "**************************************************************"
-    echo " Do you want to run FlowForge as a service?"
+    echo " Do you want to run FlowFuse as a service?"
     echo "**************************************************************"
     read -p "Y/n: " yn
     if [ -z "${yn}" ]; then
@@ -203,14 +203,14 @@ if [[ "$OSTYPE" == linux* ]]; then
     if [[ "$yn" == "y" ]] || [[ "$yn" == "Y" ]]; then 
 
       echo "**************************************************************"
-      echo " Do you want to run FlowForge as the current user ($USER)   "
-      echo " or create a flowforge user?                                "
+      echo " Do you want to run FlowFuse as the current user ($USER)   "
+      echo " or create a flowfuse user?                                "
       if [ $EUID -eq 0  ]; then
         echo " running as root is a really bad idea, please create a new user"
       fi
       echo "**************************************************************"
 
-      read -p "Current/FlowForge (c/F): " cf
+      read -p "Current/FlowFuse (c/F): " cf
       if [ -z "${cf}" ]; then
         cf=F
       fi
@@ -223,11 +223,11 @@ if [[ "$OSTYPE" == linux* ]]; then
         echo "Using sudo to create a new user, please enter password if asked"
 
         if createUser; then
-          FF_USER=flowforge
-          FF_GROUP=flowforge
+          FF_USER=flowfuse
+          FF_GROUP=flowfuse
         else
           echo "**************************************************************"
-          echo " Failed to create flowforge user                             "
+          echo " Failed to create flowfuse user                             "
           echo "**************************************************************"
           exit 1
         fi
@@ -239,23 +239,23 @@ if [[ "$OSTYPE" == linux* ]]; then
         exit 1
       fi 
       
-      sed 's!/opt/flowforge!'$DIR'!;s!User=pi!User='$FF_USER'!;s!Group=pi!Group='$FF_GROUP'!' $DIR/etc/systemd/flowforge.service-skel > $DIR/etc/systemd/flowforge.service
-      sed 's!/opt/flowforge!'$DIR'!;s!User=pi!User='$FF_USER'!;s!Group=pi!Group='$FF_GROUP'!' $DIR/etc/systemd/flowforge-file.service-skel > $DIR/etc/systemd/flowforge-file.service
+      sed 's!/opt/flowforge!'$DIR'!;s!User=pi!User='$FF_USER'!;s!Group=pi!Group='$FF_GROUP'!' $DIR/etc/systemd/flowfuse.service-skel > $DIR/etc/systemd/flowfuse.service
+      sed 's!/opt/flowforge!'$DIR'!;s!User=pi!User='$FF_USER'!;s!Group=pi!Group='$FF_GROUP'!' $DIR/etc/systemd/flowfuse-file.service-skel > $DIR/etc/systemd/flowfuse-file.service
 
       
       if [[ "$MYOS" == "debian" ]] || [[ "$MYOS" == "ubuntu" ]] || [[ "$MYOS" == "raspbian" ]]; then
         #Debian/Ubuntu /lib/systemd/system/
-        sudo cp $DIR/etc/systemd/flowforge.service /lib/systemd/system/
-        sudo cp $DIR/etc/systemd/flowforge-file.service /lib/systemd/system/
+        sudo cp $DIR/etc/systemd/flowfuse.service /lib/systemd/system/
+        sudo cp $DIR/etc/systemd/flowfuse-file.service /lib/systemd/system/
       elif [[ "$MYOS" == "rhel" ]] || [[ "$MYOS" == "centos" || "$MYOS" == "amzn" || "$MYOS" == "fedora" ]]; then
         #RHEL/Fedora /etc/systemd/system/
-        sudo cp $DIR/etc/systemd/flowforge.service /etc/systemd/system/
-        sudo cp $DIR/etc/systemd/flowforge-file.service /etc/systemd/system/
+        sudo cp $DIR/etc/systemd/flowfuse.service /etc/systemd/system/
+        sudo cp $DIR/etc/systemd/flowfuse-file.service /etc/systemd/system/
       fi
 
       sudo chown -R $FF_USER $DIR
 
-      sudo -u $FF_USER test -x $DIR/bin/flowforge.sh
+      sudo -u $FF_USER test -x $DIR/bin/flowfuse.sh
       if [ $? -eq 1 ]; then
         sudo -u $FF_USER namei -l $DIR
         echo "**************************************************************"
@@ -269,7 +269,7 @@ if [[ "$OSTYPE" == linux* ]]; then
 
       echo "**************************************************************"
       echo " Service installed but not started, to start run the        "
-      echo " following: sudo service flowforge start                    "
+      echo " following: sudo service flowfuse start                    "
       echo "**************************************************************"
 
     fi
@@ -277,6 +277,6 @@ if [[ "$OSTYPE" == linux* ]]; then
 else
   echo "**************************************************************"
   echo " Install complete "
-  echo " You can start FlowForge by running './bin/flowforge.sh'"
+  echo " You can start FlowFuse by running './bin/flowfuse.sh'"
   echo "**************************************************************"
 fi

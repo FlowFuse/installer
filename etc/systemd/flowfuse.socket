@@ -1,6 +1,6 @@
 [Unit]
-Description=FlowForge Socket
-PartOf=flowforge.service
+Description=FlowFuse Socket
+PartOf=flowfuse.service
 
 [Socket]
 ListenStream=3000

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>FlowFuse</short>
+  <description>A FlowFuse service.</description>
+  <port protocol="tcp" port="3000"/>
+  <port protocol="tcp" port="12880-12980" />
+</service>

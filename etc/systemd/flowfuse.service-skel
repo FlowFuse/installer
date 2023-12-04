@@ -1,30 +1,30 @@
-# systemd service file to start FlowForge
+# systemd service file to start FlowFuse
 
 [Unit]
-Description=FlowForge File Storage Platform
+Description=FlowFuse Platform
 Wants=network.target
-Documentation=https://flowforge.com/docs
+Documentation=https://flowfuse.com/docs
 
 [Service]
 Type=simple
 # Run as normal pi user - change to the user name you wish to run FlowForge as
 User=pi
 Group=pi
-WorkingDirectory=/opt/flowforge
+WorkingDirectory=/opt/flowfuse
 
 # define an optional environment file in FlowForge install directory to set custom variables externally
-EnvironmentFile=-/opt/flowforge/environment
+EnvironmentFile=-/opt/flowfuse/environment
 # uncomment next line if you need to wait for time sync before starting
 #ExecStartPre=/bin/bash -c '/bin/journalctl -b -u systemd-timesyncd | /bin/grep -q "systemd-timesyncd.* Synchronized to time server"'
 
-ExecStart=/opt/flowforge/bin/ff-file-storage.sh
+ExecStart=/opt/flowfuse/bin/flowfuse.sh
 # Use SIGINT to stop
 KillSignal=SIGINT
 # Auto restart on crash
 Restart=on-failure
 RestartSec=20
 # Tag things in the log
-SyslogIdentifier=FlowForge-File
+SyslogIdentifier=FlowFuse
 #StandardOutput=syslog
 
 [Install]

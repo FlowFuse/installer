@@ -8,4 +8,4 @@ cd %F_PATH%
 cd ..
 SET FLOWFORGE_HOME=%CD%
 
-.\app\node_modules\.bin\flowforge.cmd
+.\app\node_modules\.bin\flowfuse.cmd

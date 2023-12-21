@@ -1,4 +1,4 @@
-/var/log/flowforge.log
+/var/log/flowfuse.log
 {
 	rotate 4
 	weekly

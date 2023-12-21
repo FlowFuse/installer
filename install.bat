@@ -1,6 +1,6 @@
 @echo off
 SETLOCAL EnableDelayedExpansion
-title FlowForge Installer
+title FlowFuse Installer
 
 REM #### Setup the environment ####################################
 set MIN=16
@@ -12,7 +12,7 @@ set NPMVERSION=Unknown
 REM #### Print header #############################################
 echo **************************************************************
 echo *                                                            *
-echo *                    FlowForge Installer                     *
+echo *                    FlowFuse Installer                      *
 echo *                                                            *
 echo **************************************************************
 
@@ -58,20 +58,20 @@ IF %ERRORLEVEL% NEQ 0 (
 
 REM #### Begin Installation #######################################
 echo *                                                            *
-echo * Installing FlowForge...                                    *
-title FlowForge Installer - Installing
+echo * Installing FlowFuse...                                     *
+title FlowFuse Installer - Installing
 
 REM Clean up before install
 cd app
 if exist node_modules rd /q /s node_modules
 if exist package-lock.json del /q package-lock.json
 
-REM #### Install Flowforge ########################################
+REM #### Install FlowFuse #########################################
 call npm install --production --no-fund --no-audit --silent 
 cd ..
 copy /Y app\node_modules\@flowforge\flowforge\etc\flowforge.yml etc > nul
-copy /Y app\node_modules\@flowforge\file-server\etc/flowforge-storage.yml etc > nul
-call :PRINT "> FlowForge Install Complete"
+copy /Y app\node_modules\@flowfuse\file-server\etc\flowforge-storage.yml etc > nul
+call :PRINT "> FlowFuse Install Complete"
 
 REM #### Install Node-RED Stack ###################################
 echo *                                                            *
@@ -82,17 +82,17 @@ call :PRINT "> Node-RED Stack Install Complete"
 
 REM #### All done, print final part ###############################
 echo *                                                            *
-echo * FlowForge can be started with bin\flowforge.bat            *
+echo * FlowFuse  can be started with bin\flowfuse.bat             *
 echo *                                                            *
 echo **************************************************************
 
-title FlowForge Installer - Complete
+title FlowFuse Installer - Complete
 goto :the_end
 
 
 REM #### NodeJS Problem ###########################################
 :node_problem
-title FlowForge Installer - NodeJS Problem
+title FlowFuse Installer - NodeJS Problem
 call :PRINT "> NodeJS version !MIN! or newer is required"
 echo *   Please install latest LTS release from                   *
 echo *   https://nodejs.org/en/download/                          *
@@ -106,7 +106,7 @@ exit /B 1
 
 REM #### NPM Problem ##############################################
 :npm_problem
-title FlowForge Installer - NPM Problem
+title FlowFuse Installer - NPM Problem
 call :PRINT "> NPM version !NPMMIN! or newer is required"
 echo *   Please check your NPM installation                       *
 echo *                                                            *

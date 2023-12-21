@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<service>
-  <short>FlowForge</short>
-  <description>A FlowForge service.</description>
-  <port protocol="tcp" port="1880"/>
-  <port protocol="tcp" port="7880-7980" />
-</service>

@@ -1,9 +1,9 @@
-# systemd service file to start FlowForge
+# systemd service file to start FlowFuse
 
 [Unit]
-Description=FlowForge File Storage Platform
+Description=FlowFuse Platform
 Wants=network.target
-Documentation=https://flowforge.com/docs
+Documentation=https://flowfuse.com/docs
 
 [Service]
 Type=simple
@@ -17,14 +17,14 @@ EnvironmentFile=-/opt/flowforge/environment
 # uncomment next line if you need to wait for time sync before starting
 #ExecStartPre=/bin/bash -c '/bin/journalctl -b -u systemd-timesyncd | /bin/grep -q "systemd-timesyncd.* Synchronized to time server"'
 
-ExecStart=/opt/flowforge/bin/ff-file-storage.sh
+ExecStart=/opt/flowforge/bin/flowfuse.sh
 # Use SIGINT to stop
 KillSignal=SIGINT
 # Auto restart on crash
 Restart=on-failure
 RestartSec=20
 # Tag things in the log
-SyslogIdentifier=FlowForge-File
+SyslogIdentifier=FlowFuse
 #StandardOutput=syslog
 
 [Install]

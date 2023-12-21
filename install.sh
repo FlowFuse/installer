@@ -178,7 +178,7 @@ npm install --production --no-fund --no-audit --silent
 
 cd ..
 if [ ! -f $DIR/etc/flowforge.yml ]; then
-  cp $DIR/app/node_modules/@flowforge/flowforge/etc/flowforge.yml $DIR/etc/flowforge.yml
+  cp $DIR/app/node_modules/@flowfuse/flowfuse/etc/flowforge.yml $DIR/etc/flowforge.yml
 fi
 if [ ! -f $DIR/etc/flowforge-storage.yml ]; then
   cp $DIR/app/node_modules/@flowfuse/file-server/etc/flowforge-storage.yml $DIR/etc/flowforge-storage.yml

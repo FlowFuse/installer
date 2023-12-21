@@ -69,7 +69,7 @@ if exist package-lock.json del /q package-lock.json
 REM #### Install FlowFuse #########################################
 call npm install --production --no-fund --no-audit --silent 
 cd ..
-copy /Y app\node_modules\@flowforge\flowforge\etc\flowforge.yml etc > nul
+copy /Y app\node_modules\@flowfuse\flowfuse\etc\flowforge.yml etc > nul
 copy /Y app\node_modules\@flowfuse\file-server\etc\flowforge-storage.yml etc > nul
 call :PRINT "> FlowFuse Install Complete"
 

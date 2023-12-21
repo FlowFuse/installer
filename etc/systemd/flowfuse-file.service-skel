@@ -10,14 +10,14 @@ Type=simple
 # Run as normal pi user - change to the user name you wish to run FlowFuse as
 User=pi
 Group=pi
-WorkingDirectory=/opt/flowfuse
+WorkingDirectory=/opt/flowforge
 
 # define an optional environment file in FlowFuse install directory to set custom variables externally
-EnvironmentFile=-/opt/flowfuse/environment
+EnvironmentFile=-/opt/flowforge/environment
 # uncomment next line if you need to wait for time sync before starting
 #ExecStartPre=/bin/bash -c '/bin/journalctl -b -u systemd-timesyncd | /bin/grep -q "systemd-timesyncd.* Synchronized to time server"'
 
-ExecStart=/opt/flowfuse/bin/ff-file-storage.sh
+ExecStart=/opt/flowforge/bin/ff-file-storage.sh
 # Use SIGINT to stop
 KillSignal=SIGINT
 # Auto restart on crash

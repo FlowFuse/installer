@@ -1,10 +1,10 @@
 {
     "name": "@flowfuse/flowfuse-localfs",
-    "version": "1.14.0",
+    "version": "1.15.0",
     "description": "FlowFuse Local Install",
     "private": true,
     "bugs": {
-        "url": "https://github.com/Flowfuse/flowfuse/issues"
+        "url": "https://github.com/FlowFuse/flowfuse/issues"
     },
     "author": {
         "name": "FlowFuse Inc."

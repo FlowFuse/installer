@@ -1,3 +1,7 @@
+#### 1.15.0: Release
+
+ - Rename to FlowFuse (#94) @hardillb
+
 #### 1.14.0: Release
 
 

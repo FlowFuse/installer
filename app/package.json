@@ -1,18 +1,18 @@
 {
-    "name": "@flowforge/flowforge-localfs",
+    "name": "@flowfuse/flowfuse-localfs",
     "version": "1.14.0",
-    "description": "FlowForge",
+    "description": "FlowFuse Local Install",
     "private": true,
     "bugs": {
-        "url": "https://github.com/flowforge/flowforge/issues"
+        "url": "https://github.com/Flowfuse/flowfuse/issues"
     },
     "author": {
-        "name": "FlowForge Inc."
+        "name": "FlowFuse Inc."
     },
     "license": "SEE LICENSE IN ../LICENSE",
     "dependencies": {
-        "@flowforge/flowforge": "^1.14.0",
-        "@flowforge/file-server": "^1.14.0"
+        "@flowfuse/flowfuse": "^1.15.0",
+        "@flowfuse/file-server": "^1.15.0"
     },
     "engines": {
         "node": ">=16.x"

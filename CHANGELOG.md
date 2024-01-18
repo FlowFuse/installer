@@ -1,3 +1,7 @@
+#### 2.0.0: Release
+
+ - Bump min NodeJS version to 18.x (#98) @hardillb
+
 #### 1.15.0: Release
 
  - Rename to FlowFuse (#94) @hardillb

@@ -1,3 +1,6 @@
+#### 2.1.0: Release
+
+
 #### 2.0.0: Release
 
  - Bump min NodeJS version to 18.x (#98) @hardillb

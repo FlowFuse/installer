@@ -44,9 +44,9 @@ esac
 
 createUser() {
   if [[ "$MYOS" == "debian" ]] || [[ "$MYOS" == "ubuntu" ]] || [[ "$MYOS" == "raspbian" ]]; then
-    sudo adduser --system --home $DIR --group --no-create-home --disabled-login --disabled-password --quiet flowforge
+    sudo adduser --system --home $DIR --group --no-create-home --disabled-login --disabled-password --quiet flowfuse
   elif [[ "$MYOS" == "rhel" ]] || [[ "$MYOS" == "centos" || "$MYOS" == "amzn" || "$MYOS" == "fedora" ]]; then
-    sudo adduser --system --home $DIR --no-create-home -U -s /sbin/nologin flowforge
+    sudo adduser --system --home $DIR --no-create-home -U -s /sbin/nologin flowfuse
   fi
 
   return $?

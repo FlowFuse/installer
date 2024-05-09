@@ -1,3 +1,7 @@
+#### 2.4.0: Release
+
+ - Fix user creation (#104) @hardillb
+
 #### 2.3.0: Release
 
 

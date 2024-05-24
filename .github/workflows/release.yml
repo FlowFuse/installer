@@ -28,6 +28,9 @@ jobs:
           mkdir "flowforge-installer"
           cp -R app bin broker etc var install.* LICENSE README.md "flowforge-installer"
           zip -r "flowforge-installer.zip" "flowforge-installer"
+          mkdir "flowfuse-installer"
+          cp -R app bin broker etc var install.* LICENSE README.md "flowfuse-installer"
+          zip -r "flowfuse-installer.zip" "flowfuse-installer"
           
       - name: Show Env
         run: env
@@ -35,5 +38,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: flowforge-installer.zip
-        
+          files: |
+            flowforge-installer.zip
+            flowfuse-installer.zip
+

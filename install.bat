@@ -3,7 +3,7 @@ SETLOCAL EnableDelayedExpansion
 title FlowFuse Installer
 
 REM #### Setup the environment ####################################
-set MIN=18
+set MIN=20
 set VERSION=Unknown
 set NPMMIN=8
 set NPMVERSION=Unknown

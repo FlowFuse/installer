@@ -24,8 +24,7 @@ The install script has been tested against the following operating systems:
 
 ### Node.js
 
-FlowFuse requires ***Node.js v18***, the install script will install Node.js v20 if
-there is no version currently installed.
+FlowFuse requires ***Node.js v20***.
 
 #### Linux
 

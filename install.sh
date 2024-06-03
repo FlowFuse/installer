@@ -28,7 +28,7 @@ DIR="$(dirname "$(realpath "$0")")"
 
 cd $DIR
 
-MIN_NODEJS=18
+MIN_NODEJS=20
 
 case "$OSTYPE" in
   darwin*) 

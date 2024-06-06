@@ -1,3 +1,11 @@
+#### 2.5.0: Release
+
+ - Bump default installed NodeJS version (#111) @hardillb
+ - Bump softprops/action-gh-release from 1 to 2 (#109) @app/dependabot
+ - Bump actions/checkout from 3 to 4 (#110) @app/dependabot
+ - Enable dependabot for github actions (#106) @ppawlowski
+ - Create flowfuse-installer.zip (#108) @hardillb
+
 #### 2.4.0: Release
 
  - Fix user creation (#104) @hardillb

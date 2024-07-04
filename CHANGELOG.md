@@ -1,3 +1,6 @@
+#### 2.6.0: Release
+
+
 #### 2.5.0: Release
 
  - Bump default installed NodeJS version (#111) @hardillb

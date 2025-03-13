@@ -1,6 +1,6 @@
 {
     "name": "@flowfuse/flowfuse-localfs",
-    "version": "2.14.1",
+    "version": "2.15.0",
     "description": "FlowFuse Local Install",
     "private": true,
     "bugs": {
@@ -11,8 +11,8 @@
     },
     "license": "SEE LICENSE IN ../LICENSE",
     "dependencies": {
-        "@flowfuse/flowfuse": "^2.14.1",
-        "@flowfuse/file-server": "^2.14.1"
+        "@flowfuse/flowfuse": "^2.15.0",
+        "@flowfuse/file-server": "^2.15.0"
     },
     "engines": {
         "node": ">=18.x"

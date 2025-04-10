@@ -1,3 +1,7 @@
+#### 2.16.0: Release
+
+ - chore: Pin external actions to commit hash (#127) @ppawlowski
+
 #### 2.15.0: Release
 
 

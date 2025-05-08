@@ -1,3 +1,7 @@
+#### 2.17.0: Release
+
+ - Bump softprops/action-gh-release from 2.2.1 to 2.2.2 (#129)
+
 #### 2.16.0: Release
 
  - chore: Pin external actions to commit hash (#127) @ppawlowski

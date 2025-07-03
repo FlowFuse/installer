@@ -1,3 +1,7 @@
+#### 2.19.0: Release
+
+ - Bump softprops/action-gh-release from 2.2.2 to 2.3.2 (#132)
+
 #### 2.18.0: Release
 
 

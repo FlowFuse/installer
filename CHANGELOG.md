@@ -1,3 +1,8 @@
+#### 2.24.5: Release
+
+ - Bump softprops/action-gh-release from 2.4.2 to 2.5.0 (#154)
+ - Bump actions/checkout from 6.0.0 to 6.0.1 (#155) @app/dependabot
+
 #### 2.24.4: Release
 
 

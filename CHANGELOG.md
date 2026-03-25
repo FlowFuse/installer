@@ -1,3 +1,7 @@
+#### 2.28.1: Release
+
+ - Bump softprops/action-gh-release from 2.5.0 to 2.6.1 (#165)
+
 #### 2.28.0: Release
 
 

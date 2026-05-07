@@ -1,3 +1,8 @@
+#### 2.30.0: Release
+
+ - Bump softprops/action-gh-release from 2.6.1 to 3.0.0 (#169)
+ - ci: Use new project-automation workflow (#170) @ppawlowski
+
 #### 2.29.1: Release
 
 

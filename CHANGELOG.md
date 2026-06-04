@@ -1,3 +1,7 @@
+#### 2.31.0: Release
+
+ - ci: enable dependabot cooldown (#173) @ppawlowski
+
 #### 2.30.1: Release
 
 

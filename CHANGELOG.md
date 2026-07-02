@@ -1,3 +1,10 @@
+#### 2.32.0: Release
+
+ - ci: set dependabot pull request limit to 30 (#178)
+ - Bump softprops/action-gh-release from 3.0.0 to 3.0.1 (#180)
+ - Bump actions/checkout from 6.0.3 to 7.0.0 (#179)
+ - Bump actions/checkout from 6.0.2 to 6.0.3 (#174)
+
 #### 2.31.3: Release
 
 

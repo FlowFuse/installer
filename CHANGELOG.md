@@ -1,3 +1,7 @@
+#### 2.32.1: Release
+
+ - ci: Add slack notification to the release pipeline (#182)
+
 #### 2.32.0: Release
 
  - ci: set dependabot pull request limit to 30 (#178)

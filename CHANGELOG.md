@@ -1,3 +1,8 @@
+#### 2.33.1: Release
+
+ - Bump actions/checkout from 7.0.0 to 7.0.1 (#185)
+ - Bump softprops/action-gh-release from 3.0.1 to 3.0.2 (#183)
+
 #### 2.33.0: Release
 
 

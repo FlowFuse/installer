@@ -1,3 +1,7 @@
+#### 3.1.1: Release
+
+ - Bump softprops/action-gh-release from 3.0.2 to 3.0.3 (#191)
+
 #### 3.1.0: Release
 
 
